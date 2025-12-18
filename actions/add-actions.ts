@@ -1,7 +1,7 @@
 "use server";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { db } from "@/db/intex";
+import { db } from "@/db/index";
 import { dataTable } from "@/db/schema";
 import { CATAGORY } from "@/types/type";
 import { v4 as uuid } from "uuid";
