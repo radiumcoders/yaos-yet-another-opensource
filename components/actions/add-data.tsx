@@ -19,12 +19,10 @@ import {
   SelectValue,
 } from "../ui/select";
 import { addData } from "@/actions/add-actions";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 function AddDataForm() {
   const [catagory, setCatagory] = useState<string>("ui-library");
-  const router = useRouter();
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
@@ -90,7 +88,6 @@ function AddDataForm() {
         </CardContent>
         <CardFooter>
           <Button
-            onClick={() => router.back()}
             type="submit"
             className="w-full"
           >
