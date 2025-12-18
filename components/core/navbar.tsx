@@ -5,10 +5,12 @@ import Container from "@/components/core/container";
 import { Button } from "@/components/ui/button";
 import { Moon, Plus, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
 
 function Navbar() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   // Wait until component is mounted on client before rendering theme-dependent content
   useEffect(() => {
@@ -37,7 +39,7 @@ function Navbar() {
               <Moon />
             )}
           </Button>
-          <Button className="uppercase flex items-center gap-2">
+          <Button onClick={() => router.push("/add")} className="uppercase flex items-center gap-2">
             <Plus className="h-4 w-4" />
             add
           </Button>

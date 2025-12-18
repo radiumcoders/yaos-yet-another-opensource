@@ -1,8 +1,9 @@
-import { integer, text, boolean, pgTable } from "drizzle-orm/pg-core";
+import { pgTable, text, uuid } from "drizzle-orm/pg-core";
 
-export const todo = pgTable("todo", {
-  id: integer("id").primaryKey(),
-  title: text("text").notNull(),
+export const dataTable = pgTable("data", {
+  id: uuid("id").primaryKey(),
+  title: text("title").notNull(),
+  catagory: text("catagory").notNull(),
   description: text("description").notNull(),
   githubUrl: text("github_url").notNull(),
 });
