@@ -3,5 +3,6 @@ CREATE TABLE "data" (
 	"title" text NOT NULL,
 	"catagory" text NOT NULL,
 	"description" text NOT NULL,
-	"github_url" text NOT NULL
+	"github_url" text NOT NULL,
+	"github_raw_url" text NOT NULL
 );

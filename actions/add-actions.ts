@@ -23,6 +23,7 @@ export const addData = async (formData: FormData) => {
   const description = formData.get("description") as string;
   const catagory = formData.get("catagory") as string;
   const githubUrl = formData.get("githubUrl") as string;
+  const githubRawUrl = formData.get("githubRawUrl") as string;
   const id = uuid();
 
   await db.insert(dataTable).values({
@@ -31,6 +32,7 @@ export const addData = async (formData: FormData) => {
     description: description,
     catagory: catagory,
     githubUrl: githubUrl,
+    githubRawUrl: githubRawUrl,
   });
 
   revalidatePath("/");

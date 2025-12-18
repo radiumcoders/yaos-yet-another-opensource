@@ -1,5 +1,5 @@
 {
-  "id": "366c554e-94a6-479e-bce5-1b127985532d",
+  "id": "fba7694b-796f-43f6-925c-1353e5b2aa4c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -34,6 +34,12 @@
         },
         "github_url": {
           "name": "github_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "github_raw_url": {
+          "name": "github_raw_url",
           "type": "text",
           "primaryKey": false,
           "notNull": true

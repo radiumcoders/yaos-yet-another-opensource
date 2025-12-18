@@ -48,7 +48,7 @@ function AddDataForm() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="catagory">Category</Label>
-            <Select name="catagory" required defaultValue="ui library">
+            <Select name="catagory" required defaultValue="ui-library">
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
@@ -69,6 +69,15 @@ function AddDataForm() {
               id="githubUrl"
               name="githubUrl"
               placeholder="https://github.com/username/repo"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="githubRawUrl">GitHub Raw URL</Label>
+            <Input
+              id="githubRawUrl"
+              name="githubRawUrl"
+              placeholder="https://raw.githubusercontent.com/username/repo/main/registry.json"
               required
             />
           </div>

@@ -1,7 +1,4 @@
 import Container from "@/components/core/container";
-import { Badge } from "@/components/ui/badge";
-import Cards from "../ness/cards";
-import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -9,6 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Cards from "../ness/cards";
 
 import { getData } from "@/actions/add-actions";
 import Header from "@/components/header";
