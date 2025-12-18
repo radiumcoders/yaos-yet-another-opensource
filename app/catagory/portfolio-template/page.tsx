@@ -9,7 +9,7 @@ async function page() {
   return (
     <Container className="p-4 flex flex-col gap-4 h-fit border-b border-edge">
       <Header catagory={"portfolio-template"} seeMore={false} />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {data.map((item) => (
           <div key={item.id}>
             <Cards
