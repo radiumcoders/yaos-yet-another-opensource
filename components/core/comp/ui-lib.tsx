@@ -10,11 +10,11 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-function UiPart() {
+function UiPart({ badge }: { badge: string }) {
   return (
     <Container className="p-4 flex flex-col gap-4 h-fit border-b border-edge">
       <div className="flex  items-center w-full justify-between gap-2">
-        <Badge>Ui library</Badge>
+        <Badge className="uppercase">{badge}</Badge>
         <Button size="sm">See more</Button>
       </div>
       <Carousel>

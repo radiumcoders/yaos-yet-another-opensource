@@ -13,7 +13,8 @@ export default function Page() {
           </div>
         </Container>
       </header>
-      <UiPart />
+      <UiPart badge="ui library" />
+      <UiPart badge="portfolio templates" />
     </main>
   );
 }
