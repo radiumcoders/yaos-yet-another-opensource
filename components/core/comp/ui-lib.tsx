@@ -19,7 +19,7 @@ async function UiPart({ catagory }: { catagory: string }) {
 
   return (
     <Container className="p-4 flex flex-col gap-4 h-fit border-b border-edge">
-      <Header catagory={catagory} />
+      <Header catagory={catagory} seeMore={true}/>
       <Carousel>
         <CarouselContent>
           {data.map((item) => (

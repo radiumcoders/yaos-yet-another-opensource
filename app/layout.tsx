@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter , JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Container from "@/components/core/container";
 import { ThemeProvider } from "next-themes";
+import Navbar from "@/components/core/navbar";
 
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -29,10 +30,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={jetBrainsMono.variable} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}
       >
         <ThemeProvider attribute="class">
-          <Container className="h-screen">{children}</Container>
+          <header className="w-full ">
+            <Navbar  />
+            <Container>
+              <div className="h-8 border-b border-edge w-full text-primary/10 flex items-center justify-center">
+                <span>YAOS - yet another open source</span>
+              </div>
+            </Container>
+          </header>
+          <Container className="flex-1">{children}</Container>
         </ThemeProvider>
       </body>
     </html>

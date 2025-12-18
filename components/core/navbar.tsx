@@ -18,10 +18,10 @@ function Navbar() {
   }, []);
 
   return (
-    <Container className="h-16 w-full border-b border-x-0 border-edge">
+    <Container className="h-16 w-full border-b border-x border-edge">
       <div className="h-full w-full flex items-center justify-between p-4">
         <div className="logo">
-          <span className="font-bold text-xl">YAOS</span>
+          <span onClick={() => router.push("/")} className="font-bold text-xl">YAOS</span>
         </div>
         <div className="flex items-center gap-2">
           <Button
