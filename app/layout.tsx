@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter , JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import Container from "@/components/core/container";
+import { ThemeProvider } from "next-themes";
+
+const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,11 +27,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={jetBrainsMono.variable} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider attribute="class">
+          <Container className="h-screen">{children}</Container>
+        </ThemeProvider>
       </body>
     </html>
   );
