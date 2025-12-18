@@ -4,8 +4,9 @@ export type dataType = {
   description: string;
   catagory: CATAGORY;
   githubUrl: string;
-  githubRawUrl: string;
+  githubRawUrl?: string;
 };
+
 export enum CATAGORY {
   UI_LIBRARY = "ui-library",
   PORTFOLIO = "portfolio-template",

@@ -20,8 +20,10 @@ import {
 } from "../ui/select";
 import { addData } from "@/actions/add-actions";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 function AddDataForm() {
+  const [catagory, setCatagory] = useState<string>("ui-library");
   const router = useRouter();
   return (
     <Card className="w-full max-w-md mx-auto">
@@ -48,16 +50,20 @@ function AddDataForm() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="catagory">Category</Label>
-            <Select name="catagory" required defaultValue="ui-library">
+            <Select
+              name="catagory"
+              required
+              value={catagory}
+              onValueChange={(e) => setCatagory(e!)}
+            >
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="" disabled>
-                  Select a category
+                <SelectItem value="ui-library">UI Library</SelectItem>
+                <SelectItem value="portfolio-template">
+                  Portfolio Template
                 </SelectItem>
-                <SelectItem value="ui library">UI Library</SelectItem>
-                <SelectItem value="portfolio-template">Portfolio-Template</SelectItem>
                 <SelectItem value="tool">Tool</SelectItem>
                 <SelectItem value="other">Other</SelectItem>
               </SelectContent>
@@ -78,12 +84,16 @@ function AddDataForm() {
               id="githubRawUrl"
               name="githubRawUrl"
               placeholder="https://raw.githubusercontent.com/username/repo/main/registry.json"
-              required
+              required={catagory === "ui-library"}
             />
           </div>
         </CardContent>
         <CardFooter>
-          <Button onClick={() => router.back()} type="submit" className="w-full">
+          <Button
+            onClick={() => router.back()}
+            type="submit"
+            className="w-full"
+          >
             Submit Project
           </Button>
         </CardFooter>
