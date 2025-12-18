@@ -8,21 +8,32 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 
-function Cards() {
+type CardsProps = {
+  title: string;
+  description: string;
+  githubUrl: string;
+};
+
+function Cards({ title, description, githubUrl }: CardsProps) {
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden h-full flex flex-col justify-between">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">ShadCN UI</CardTitle>
-        <CardDescription>
-          The Foundation for your Design System A set of beautifully designed
-          components that you can customize, extend, and build on. Start here
-          then make it your own. Open Source. Open Code.
+        <CardTitle className="text-2xl font-bold truncate">{title}</CardTitle>
+        <CardDescription className="line-clamp-3">
+          {description}
         </CardDescription>
       </CardHeader>
       <CardFooter>
-        <Button className="w-full" variant="outline">
-          visit
-        </Button>
+        <a
+          href={githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full"
+        >
+          <Button className="w-full" variant="outline">
+            visit
+          </Button>
+        </a>
       </CardFooter>
     </Card>
   );

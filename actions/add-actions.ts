@@ -6,7 +6,14 @@ import { dataTable } from "@/db/schema";
 import { CATAGORY } from "@/types/type";
 import { v4 as uuid } from "uuid";
 
-export const getData = async () => {
+export const getData = async (catagory?: string) => {
+  if (catagory) {
+    const data = await db
+      .select()
+      .from(dataTable)
+      .where(eq(dataTable.catagory, catagory));
+    return data;
+  }
   const data = await db.select().from(dataTable);
   return data;
 };
