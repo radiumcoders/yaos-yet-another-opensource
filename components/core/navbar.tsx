@@ -12,25 +12,9 @@ function Navbar() {
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
-  //store the username in a state
-  const [username, setUsername] = useState("");
-  //allow only 3 refreshes of the username
-  const [refreshed, setRefreshed] = useState(0);
+  // Wait until component is mounted on client before rendering theme-dependent content
   useEffect(() => {
-    function main() {
-      //check if the username is already stored in the local storage
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        //set the username from the local storage is exists and return :]
-        setUsername(stored);
-      }
-      //generate a new username and store it to localstorage ;]
-      const generated = generateRandomUsername();
-      localStorage.setItem(STORAGE_KEY, generated);
-      setUsername(generated);
-    }
-
-    main();
+    setMounted(true);
   }, []);
 
   return (
@@ -59,14 +43,14 @@ function Navbar() {
           </Button>
           <Button onClick={() => router.push("/")} variant={"secondary"}>
             <House className="size-4" />
-          </Button>
-          <Button
-            onClick={() => router.push("/add")}
-            className="uppercase flex items-center gap-2"
-          >
-            <Plus className="h-4 w-4" />
-            add
-          </Button>
+            </Button>
+            <Button
+              onClick={() => router.push("/add")}
+              className="uppercase flex items-center gap-2"
+            >
+              <Plus className="h-4 w-4" />
+              add
+            </Button>
         </div>
       </div>
     </Container>
