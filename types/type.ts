@@ -4,7 +4,8 @@ export type dataType = {
   description: string;
   catagory: CATAGORY;
   githubUrl: string;
-  githubRawUrl?: string;
+  githubRawUrl?: string; // Optional field
+  registrieName?: string; // Optional field
 };
 
 export enum CATAGORY {

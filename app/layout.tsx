@@ -4,6 +4,7 @@ import "./globals.css";
 import Container from "@/components/core/container";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/core/navbar";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -32,6 +33,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}
       >
+        <NuqsAdapter>
+
         <ThemeProvider attribute="class">
           <header className="w-full ">
             <Navbar  />
@@ -43,6 +46,7 @@ export default function RootLayout({
           </header>
           <Container className="flex-1">{children}</Container>
         </ThemeProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );

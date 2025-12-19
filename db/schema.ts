@@ -7,4 +7,5 @@ export const dataTable = pgTable("data", {
   description: text("description").notNull(),
   githubUrl: text("github_url").notNull(),
   githubRawUrl: text("github_raw_url"),
+  registrieName: text("registrie_name"),
 });

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "./ui/button";
 
 interface ComponentGridProps {
@@ -9,8 +9,8 @@ interface ComponentGridProps {
 }
 
 export default function ComponentGrid({ names, title }: ComponentGridProps) {
-  const [suffixFilter, setSuffixFilter] = useState<string>("all");
-  const [languageFilter, setLanguageFilter] = useState<string>("all");
+  const [suffixFilter, setSuffixFilter] = useState("all");
+  const [languageFilter, setLanguageFilter] = useState("all");
 
   // Check if filtering should be enabled
   const shouldShowFilters = title === "React-bits";

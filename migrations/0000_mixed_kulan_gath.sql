@@ -4,5 +4,6 @@ CREATE TABLE "data" (
 	"catagory" text NOT NULL,
 	"description" text NOT NULL,
 	"github_url" text NOT NULL,
-	"github_raw_url" text NOT NULL
+	"github_raw_url" text,
+	"registrie_name" text
 );

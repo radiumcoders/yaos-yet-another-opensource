@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { addData } from "@/actions/add-actions";
-import { useState } from "react";
+import { useQueryState } from "nuqs";
 
 /**
  * AddDataForm component - A form for submitting new open source projects
@@ -27,9 +27,9 @@ import { useState } from "react";
  */
 function AddDataForm() {
   // Track the selected category to conditionally show UI Library-specific fields
-  const [catagory, setCatagory] = useState<string>("ui-library");
+  const [category, setCategory] = useQueryState("category");
   // Check if the selected category is UI Library
-  const isUi = catagory === "ui-library";
+  const isUi = category === "ui-library";
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
@@ -57,12 +57,12 @@ function AddDataForm() {
           </div>
           {/* Category selection dropdown */}
           <div className="space-y-2">
-            <Label htmlFor="catagory">Category</Label>
+            <Label htmlFor="category">Category</Label>
             <Select
               name="catagory"
               required
-              value={catagory}
-              onValueChange={(e) => setCatagory(e!)}
+              value={category}
+              onValueChange={(e) => setCategory(e!)}
             >
               <SelectTrigger>
                 <SelectValue />
@@ -89,17 +89,28 @@ function AddDataForm() {
           </div>
           {/* Conditionally render GitHub Raw URL field - only required for UI Library category */}
           {isUi && (
-            <div className="space-y-2">
-              <Label htmlFor="githubRawUrl">
-                GitHub Raw URL For Registry.json
-              </Label>
-              <Input
-                id="githubRawUrl"
-                name="githubRawUrl"
-                placeholder="https://raw.githubusercontent.com/username/repo/main/registry.json"
-                required={catagory === "ui-library"}
-              />
-            </div>
+            <>
+              <div className="space-y-2">
+                <Label htmlFor="githubRawUrl">
+                  GitHub Raw URL For Registry.json
+                </Label>
+                <Input
+                  id="githubRawUrl"
+                  name="githubRawUrl"
+                  placeholder="https://raw.githubusercontent.com/username/repo/main/registry.json"
+                  required={category === "ui-library"}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="registrieName">Registry Name</Label>
+                <Input
+                  id="registrieName"
+                  name="registrieName"
+                  placeholder="e.g. @8bitcn ..."
+                  required={category === "ui-library"}
+                />
+              </div>
+            </>
           )}
           {/* Form submission button */}
         </CardContent>

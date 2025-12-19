@@ -1,9 +1,8 @@
 "use server";
-import { eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
 import { db } from "@/db/index";
 import { dataTable } from "@/db/schema";
-import { CATAGORY } from "@/types/type";
+import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 import { v4 as uuid } from "uuid";
 
 export const getData = async (catagory?: string) => {
@@ -24,6 +23,7 @@ export const addData = async (formData: FormData) => {
   const catagory = formData.get("catagory") as string;
   const githubUrl = formData.get("githubUrl") as string;
   const githubRawUrl = formData.get("githubRawUrl") as string;
+  const registriesName = formData.get("registrieName") as string;
   const id = uuid();
 
   await db.insert(dataTable).values({
@@ -33,6 +33,7 @@ export const addData = async (formData: FormData) => {
     catagory: catagory,
     githubUrl: githubUrl,
     githubRawUrl: githubRawUrl,
+    registrieName: registriesName,
   });
 
   revalidatePath("/");

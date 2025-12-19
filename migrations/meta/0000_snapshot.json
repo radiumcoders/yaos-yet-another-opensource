@@ -1,5 +1,5 @@
 {
-  "id": "fba7694b-796f-43f6-925c-1353e5b2aa4c",
+  "id": "65fb8a48-5e46-441c-8079-b586530d0afa",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -42,7 +42,13 @@
           "name": "github_raw_url",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
+        },
+        "registrie_name": {
+          "name": "registrie_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
