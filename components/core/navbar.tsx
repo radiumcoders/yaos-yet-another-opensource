@@ -2,6 +2,7 @@
 
 import Container from "@/components/core/container";
 import { Button } from "@/components/ui/button";
+import { useSession } from "@/lib/auth-client";
 import { House, LogIn, Moon, Plus, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
@@ -11,6 +12,7 @@ function Navbar() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
+  const { data: session, isPending } = useSession();
 
   // Wait until component is mounted on client before rendering theme-dependent content
   useEffect(() => {
@@ -44,15 +46,28 @@ function Navbar() {
           <Button onClick={() => router.push("/")} variant={"outline"}>
             <House className="size-4" />
           </Button>
-          <Button
-            onClick={() => {
-              router.push("/sign-in");
-            }}
-            variant={"secondary"}
-            className="uppercase flex items-center gap-2"
-          >
-            <LogIn /> Sign In
-          </Button>
+          {/* Replace false with your actual auth check, e.g., !!user or isAuthenticated */}
+          {isPending ? (
+            <Button
+              onClick={() => {
+                // Add your sign-out logic here
+              }}
+              variant={"secondary"}
+              className="uppercase flex items-center gap-2"
+            >
+              Logged In
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                router.push("/sign-in");
+              }}
+              variant={"secondary"}
+              className="uppercase flex items-center gap-2"
+            >
+              <LogIn /> Sign In
+            </Button>
+          )}
           <Button
             onClick={() => router.push("/add")}
             className="uppercase flex items-center gap-2"

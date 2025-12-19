@@ -36,7 +36,7 @@ export function AuthForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form method="POST" action={type === "sign-in" ? signIn : signUp}>
+          <form action={type === "sign-in" ? signIn : signUp}>
             <FieldGroup>
               {type === "sign-up" && (
                 <Field>
