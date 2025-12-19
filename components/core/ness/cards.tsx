@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,6 +9,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type CardsProps = {
   title: string;
@@ -15,6 +19,8 @@ type CardsProps = {
 };
 
 function Cards({ title, description, githubUrl }: CardsProps) {
+  const router = useRouter();
+  
   return (
     <Card className="overflow-hidden h-full flex flex-col justify-between">
       <CardHeader>
@@ -24,16 +30,16 @@ function Cards({ title, description, githubUrl }: CardsProps) {
         </CardDescription>
       </CardHeader>
       <CardFooter>
-        <a
-          href={githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full"
-        >
-          <Button className="w-full" variant="outline">
-            visit
-          </Button>
-        </a>
+          <div className="flex flex-col gap-2 w-full">
+            <Link href={githubUrl} target="_blank" rel="noopener noreferrer" className="w-full">
+            <Button className="w-full" variant="outline">
+              visit
+            </Button>
+            </Link>
+            <Button onClick={() => router.push(`/components/${title}`)} className="w-full" variant="outline">
+              view components list
+            </Button>
+          </div>
       </CardFooter>
     </Card>
   );

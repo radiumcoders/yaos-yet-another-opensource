@@ -19,7 +19,7 @@ export const getData = async (catagory?: string) => {
 };
 
 export const addData = async (formData: FormData) => {
-  const title = formData.get("title") as string;
+  const title = (formData.get("title") as string).replace(/ /g, "-");
   const description = formData.get("description") as string;
   const catagory = formData.get("catagory") as string;
   const githubUrl = formData.get("githubUrl") as string;
@@ -42,4 +42,12 @@ export const deleteTodo = async (id: string) => {
   await db.delete(dataTable).where(eq(dataTable.id, id));
 
   revalidatePath("/");
+};
+
+export const getFromTitle = async (title: string) => {
+  const data = await db
+    .select()
+    .from(dataTable)
+    .where(eq(dataTable.title, title));
+  return data;
 };
