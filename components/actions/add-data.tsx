@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { addData } from "@/actions/add-actions";
+import { addData } from "@/server/add-actions";
 import { useQueryState } from "nuqs";
 
 /**

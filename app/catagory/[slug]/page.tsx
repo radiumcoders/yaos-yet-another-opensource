@@ -1,4 +1,4 @@
-import { getData } from "@/actions/add-actions";
+import { getData } from "@/server/add-actions";
 import Container from "@/components/core/container";
 import Cards from "@/components/core/ness/cards";
 import Header from "@/components/header";

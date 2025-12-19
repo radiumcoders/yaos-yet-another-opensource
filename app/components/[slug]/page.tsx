@@ -1,5 +1,5 @@
-import { getFromTitle } from "@/actions/add-actions";
-import { fetchComponentNames } from "@/actions/fetch-component-names";
+import { getFromTitle } from "@/server/add-actions";
+import { fetchComponentNames } from "@/server/fetch-component-names";
 import Container from "@/components/core/container";
 import ComponentGrid from "@/components/component-grid";
 
@@ -22,7 +22,7 @@ export default async function Page({
       <p className="mb-6">{data.at(0)?.description}</p>
       <h2 className="text-2xl font-semibold mb-4">Components:</h2>
 
-      <ComponentGrid names={names} title={data.at(0)?.title || ""}  />
+      <ComponentGrid names={names} title={data.at(0)?.title || ""} />
     </Container>
   );
 }

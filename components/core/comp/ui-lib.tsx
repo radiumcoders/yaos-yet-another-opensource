@@ -8,16 +8,15 @@ import {
 } from "@/components/ui/carousel";
 import Cards from "../ness/cards";
 
-import { getData } from "@/actions/add-actions";
+import { getData } from "@/server/add-actions";
 import Header from "@/components/header";
-
 
 async function UiPart({ catagory }: { catagory: string }) {
   const data = await getData(catagory);
   const isUi = catagory === "ui-library";
   return (
     <Container className="p-4 flex flex-col gap-4 h-fit border-b border-edge">
-      <Header catagory={catagory} seeMore={true}/>
+      <Header catagory={catagory} seeMore={true} />
       <Carousel>
         <CarouselContent>
           {data.map((item) => (
@@ -27,7 +26,6 @@ async function UiPart({ catagory }: { catagory: string }) {
                 description={item.description}
                 githubUrl={item.githubUrl}
                 isUi={isUi}
-
               />
             </CarouselItem>
           ))}

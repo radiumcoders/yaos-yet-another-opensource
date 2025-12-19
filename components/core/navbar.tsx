@@ -2,7 +2,7 @@
 
 import Container from "@/components/core/container";
 import { Button } from "@/components/ui/button";
-import { House, Moon, Plus, Sun } from "lucide-react";
+import { House, LogIn, Moon, Plus, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -41,16 +41,25 @@ function Navbar() {
               <Moon />
             )}
           </Button>
-          <Button onClick={() => router.push("/")} variant={"secondary"}>
+          <Button onClick={() => router.push("/")} variant={"outline"}>
             <House className="size-4" />
-            </Button>
-            <Button
-              onClick={() => router.push("/add")}
-              className="uppercase flex items-center gap-2"
-            >
-              <Plus className="h-4 w-4" />
-              add
-            </Button>
+          </Button>
+          <Button
+            onClick={() => {
+              router.push("/sign-in");
+            }}
+            variant={"secondary"}
+            className="uppercase flex items-center gap-2"
+          >
+            <LogIn /> Sign In
+          </Button>
+          <Button
+            onClick={() => router.push("/add")}
+            className="uppercase flex items-center gap-2"
+          >
+            <Plus className="h-4 w-4" />
+            add
+          </Button>
         </div>
       </div>
     </Container>
