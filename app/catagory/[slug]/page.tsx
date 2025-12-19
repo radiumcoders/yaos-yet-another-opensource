@@ -21,6 +21,7 @@ export default async function Page({
               title={item.title}
               description={item.description}
               githubUrl={item.githubUrl}
+              isUi={slug === "ui-library"}
             />
           </div>
         ))}
