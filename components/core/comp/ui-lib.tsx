@@ -14,7 +14,7 @@ import Header from "@/components/header";
 
 async function UiPart({ catagory }: { catagory: string }) {
   const data = await getData(catagory);
-
+  const isUi = catagory === "ui-library";
   return (
     <Container className="p-4 flex flex-col gap-4 h-fit border-b border-edge">
       <Header catagory={catagory} seeMore={true}/>
@@ -26,6 +26,8 @@ async function UiPart({ catagory }: { catagory: string }) {
                 title={item.title}
                 description={item.description}
                 githubUrl={item.githubUrl}
+                isUi={isUi}
+
               />
             </CarouselItem>
           ))}

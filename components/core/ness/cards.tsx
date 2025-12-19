@@ -16,9 +16,10 @@ type CardsProps = {
   title: string;
   description: string;
   githubUrl: string;
+  isUi?: boolean;
 };
 
-function Cards({ title, description, githubUrl }: CardsProps) {
+function Cards({ title, description, githubUrl, isUi }: CardsProps) {
   const router = useRouter();
   
   return (
@@ -35,10 +36,12 @@ function Cards({ title, description, githubUrl }: CardsProps) {
             <Button className="w-full" variant="outline">
               visit
             </Button>
-            </Link>
+          </Link>
+          {isUi && (
             <Button onClick={() => router.push(`/components/${title}`)} className="w-full" variant="outline">
               view components list
             </Button>
+          )}
           </div>
       </CardFooter>
     </Card>
