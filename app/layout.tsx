@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter , JetBrains_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Container from "@/components/core/container";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/core/navbar";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Toaster } from "@/components/ui/sonner";
 
-const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-sans" });
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +24,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "YAOS - yet another open source",
-  description: "one pace for u to find all the open source tools u require for ur next project.",
+  description:
+    "one pace for u to find all the open source tools u require for ur next project.",
 };
 
 export default function RootLayout({
@@ -34,18 +39,20 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}
       >
         <NuqsAdapter>
-
-        <ThemeProvider attribute="class">
-          <header className="w-full ">
-            <Navbar  />
-            <Container>
-              <div className="h-8 border-b border-edge w-full text-primary/10 flex items-center justify-center">
-                <span>YAOS - yet another open source</span>
-              </div>
+          <ThemeProvider attribute="class">
+            <header className="w-full ">
+              <Navbar />
+              <Container>
+                <div className="h-8 border-b border-edge w-full text-primary/10 flex items-center justify-center">
+                  <span>YAOS - yet another open source</span>
+                </div>
+              </Container>
+            </header>
+            <Container className="flex-1">
+              {children}
             </Container>
-          </header>
-          <Container className="flex-1">{children}</Container>
-        </ThemeProvider>
+              <Toaster />
+          </ThemeProvider>
         </NuqsAdapter>
       </body>
     </html>

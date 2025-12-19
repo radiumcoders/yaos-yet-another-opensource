@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
 
 interface ComponentGridProps {
   names: string[];
@@ -141,6 +142,7 @@ export default function ComponentGrid({ names, title }: ComponentGridProps) {
           <div
             className="border flex items-center p-2 justify-center text-md text-center leading-snug min-h-fit"
             key={` component-${name}-${index}`}
+            onClick={() => toast.info(`adding { ${name} } Component to Bucket (not implemented yet)`)}
           >
             {name.replace(/-/g, " ").toUpperCase()}
           </div>
