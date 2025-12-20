@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
+import { useQueryState, parseAsArrayOf, parseAsString } from "nuqs";
+
 
 interface ComponentGridProps {
   names: string[];
@@ -12,6 +14,10 @@ interface ComponentGridProps {
 export default function ComponentGrid({ names, title }: ComponentGridProps) {
   const [suffixFilter, setSuffixFilter] = useState("all");
   const [languageFilter, setLanguageFilter] = useState("all");
+  const [selectedComponents, setSelectedComponents] = useQueryState(
+    "selected",
+    parseAsArrayOf(parseAsString).withDefault([])
+  );
 
   // Check if filtering should be enabled
   const shouldShowFilters = title === "React-bits";
@@ -138,15 +144,25 @@ export default function ComponentGrid({ names, title }: ComponentGridProps) {
 
       {/* Component Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredNames.map((name , index) => (
-          <div
-            className="border flex items-center lowercase p-2 justify-center text-md text-center leading-snug min-h-fit"
-            key={` component-${name}-${index}`}
-            onClick={() => toast.info(`adding { ${name} } Component to Bucket (not implemented yet)`)}
-          >
-            {name.replace(/-/g, " ").toUpperCase()}
-          </div>
-        ))}
+        {filteredNames.map((name , index) => {
+          const isSelected = selectedComponents.includes(name);
+          return (
+            <div
+              className={`border flex items-center lowercase p-2 justify-center text-md text-center leading-snug min-h-fit cursor-pointer transition-colors ${
+                isSelected ? "bg-primary text-primary-foreground" : "hover:bg-accent"
+              }`}
+              key={` component-${name}-${index}`}
+              onClick={() => {
+                const newSelected = isSelected
+                  ? selectedComponents.filter((c) => c !== name)
+                  : [...selectedComponents, name];
+                setSelectedComponents(newSelected);
+              }}
+            >
+              {name.replace(/-/g, " ").toUpperCase()}
+            </div>
+          );
+        })}
       </div>
 
       {/* Empty State */}
@@ -158,3 +174,5 @@ export default function ComponentGrid({ names, title }: ComponentGridProps) {
     </div>
   );
 }
+
+
