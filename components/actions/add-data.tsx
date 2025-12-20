@@ -1,7 +1,6 @@
 "use client";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { Textarea } from "../ui/textarea";
+import { addData } from "@/server/add-actions";
+import { useState } from "react";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -11,6 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 import {
   Select,
   SelectContent,
@@ -18,8 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { addData } from "@/server/add-actions";
-import { useQueryState } from "nuqs";
+import { Textarea } from "../ui/textarea";
 
 /**
  * AddDataForm component - A form for submitting new open source projects
@@ -27,7 +27,7 @@ import { useQueryState } from "nuqs";
  */
 function AddDataForm() {
   // Track the selected category to conditionally show UI Library-specific fields
-  const [category, setCategory] = useQueryState("category");
+  const [category, setCategory] = useState("ui-library");
   // Check if the selected category is UI Library
   const isUi = category === "ui-library";
   return (
