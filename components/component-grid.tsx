@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Button } from "./ui/button";
-import { useQueryState, parseAsArrayOf, parseAsString } from "nuqs";
 
 interface ComponentGridProps {
   names: string[];
@@ -12,10 +11,7 @@ interface ComponentGridProps {
 export default function ComponentGrid({ names, title }: ComponentGridProps) {
   const [suffixFilter, setSuffixFilter] = useState("all");
   const [languageFilter, setLanguageFilter] = useState("all");
-  const [selectedComponents, setSelectedComponents] = useQueryState(
-    "selected",
-    parseAsArrayOf(parseAsString).withDefault([])
-  );
+  const [selectedComponents, setSelectedComponents] = useState<string[]>([]);
 
   const shouldShowFilters = title === "React-bits";
 

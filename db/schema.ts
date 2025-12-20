@@ -10,16 +10,3 @@ export const dataTable = pgTable("data", {
   registrieName: text("registrie_name"),
 });
 
-// Add to db/schema.ts
-
-import { timestamp, jsonb } from "drizzle-orm/pg-core";
-
-// Existing dataTable...
-
-export const bucketsTable = pgTable("buckets", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  shareId: text("share_id").notNull().unique(), // Short ID for sharing (e.g., using nanoid)
-  title: text("title").notNull().default("My Bucket"),
-  components: jsonb("components").notNull().$type<string[]>(), // Array of component names
-  createdBy: text("created_by").notNull(), // User identifier (e.g., email or user ID)
-});
