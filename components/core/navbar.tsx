@@ -10,7 +10,7 @@ import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-
+ 
 function Navbar() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -27,6 +27,7 @@ function Navbar() {
         const bucketID = (await res.data!).bucketID;
         console.log("Created bucket with ID:", bucketID);
         if (res.status === 200) {
+          localStorage.setItem("latestBucketID", bucketID);
           toast.success("Bucket created successfully!");
         }
       },

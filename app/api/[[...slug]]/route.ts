@@ -12,7 +12,7 @@ const bucket = new Elysia({ prefix: "/bucket" })
   .post("/add-component", async ({ body }) => {
     const { bucketID, component } = body as {
       bucketID: string;
-      component: any;
+      component: string;
     };
     const data = await redis.get(bucketID);
     if (!data) {
