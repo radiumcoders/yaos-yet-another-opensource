@@ -2,10 +2,14 @@
 
 import Container from "@/components/core/container";
 import { Button } from "@/components/ui/button";
+// import { createBucket } from "@/server/add-components";
+import { useMutation } from "@tanstack/react-query";
+import { client } from "@/lib/client";
 import { House, Moon, Plus, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -16,6 +20,17 @@ function Navbar() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+    const { mutate: CreateBucket } = useMutation({
+      mutationFn: async () => {
+        const res = await client.bucket.create.post();
+        const bucketID = (await res.data!).bucketID;
+        console.log("Created bucket with ID:", bucketID);
+        if (res.status === 200) {
+          toast.success("Bucket created successfully!");
+        }
+      },
+    });
 
   return (
     <Container className="h-16 w-full border-b  border-x border-edge">
@@ -44,6 +59,7 @@ function Navbar() {
           <Button onClick={() => router.push("/")} variant={"outline"}>
             <House className="size-4" />
           </Button>
+          <Button onClick={() => CreateBucket()}> Create A Bucket</Button>
           <Button
             onClick={() => router.push("/add")}
             className="uppercase flex items-center gap-2"

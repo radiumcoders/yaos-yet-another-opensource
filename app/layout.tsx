@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/core/navbar";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Toaster } from "@/components/ui/sonner";
+import Providers from "@/components/query-provider";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -38,7 +39,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}
       >
-        <NuqsAdapter>
+        <Providers>
           <ThemeProvider attribute="class">
             <header className="w-full ">
               <Navbar />
@@ -53,7 +54,7 @@ export default function RootLayout({
             </Container>
               <Toaster />
           </ThemeProvider>
-        </NuqsAdapter>
+        </Providers>
       </body>
     </html>
   );
