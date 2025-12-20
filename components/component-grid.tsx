@@ -140,7 +140,7 @@ export default function ComponentGrid({ names, title }: ComponentGridProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredNames.map((name , index) => (
           <div
-            className="border flex items-center p-2 justify-center text-md text-center leading-snug min-h-fit"
+            className="border flex items-center lowercase p-2 justify-center text-md text-center leading-snug min-h-fit"
             key={` component-${name}-${index}`}
             onClick={() => toast.info(`adding { ${name} } Component to Bucket (not implemented yet)`)}
           >

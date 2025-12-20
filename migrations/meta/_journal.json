@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1766214610599,
+      "tag": "0000_classy_northstar",
+      "breakpoints": true
+    }
+  ]
+}
