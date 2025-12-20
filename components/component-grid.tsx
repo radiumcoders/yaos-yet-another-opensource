@@ -1,10 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Button } from "./ui/button";
-import { toast } from "sonner";
 import { useQueryState, parseAsArrayOf, parseAsString } from "nuqs";
-
 
 interface ComponentGridProps {
   names: string[];
@@ -19,57 +17,51 @@ export default function ComponentGrid({ names, title }: ComponentGridProps) {
     parseAsArrayOf(parseAsString).withDefault([])
   );
 
-  // Check if filtering should be enabled
   const shouldShowFilters = title === "React-bits";
 
-  // Extract unique suffixes (CSS, TW)
-  const suffixes = useMemo(() => {
-    if (!shouldShowFilters) return [];
-    const suffixSet = new Set<string>();
-    names.forEach((name) => {
-      const parts = name.split("-");
-      if (parts.length > 0) {
-        const lastPart = parts[parts.length - 1];
-        suffixSet.add(lastPart);
-      }
-    });
-    return Array.from(suffixSet).sort();
-  }, [names, shouldShowFilters]);
+  // Extract unique suffixes
+  const suffixes = shouldShowFilters
+    ? Array.from(
+        new Set(names.map((name) => name.split("-").at(-1)).filter(Boolean))
+      ).sort()
+    : [];
 
-  // Extract unique languages (TS, JS)
-  const languages = useMemo(() => {
-    if (!shouldShowFilters) return [];
-    const langSet = new Set<string>();
-    names.forEach((name) => {
-      if (name.includes("-TS-") || name.endsWith("-TS")) {
-        langSet.add("TS");
-      } else if (name.includes("-JS-") || name.endsWith("-JS")) {
-        langSet.add("JS");
-      }
-    });
-    return Array.from(langSet).sort();
-  }, [names, shouldShowFilters]);
+  // Extract unique languages
+  const languages = shouldShowFilters
+    ? Array.from(
+        new Set(
+          names
+            .filter(
+              (name) =>
+                name.includes("-TS-") ||
+                name.endsWith("-TS") ||
+                name.includes("-JS-") ||
+                name.endsWith("-JS")
+            )
+            .map((name) =>
+              name.includes("-TS-") || name.endsWith("-TS") ? "TS" : "JS"
+            )
+        )
+      ).sort()
+    : [];
 
   // Filter components
-  const filteredNames = useMemo(() => {
-    if (!shouldShowFilters) return names;
+  const matchesLanguage = (name: string) => {
+    if (languageFilter === "all") return true;
+    if (languageFilter === "TS")
+      return name.includes("-TS-") || name.endsWith("-TS");
+    if (languageFilter === "JS")
+      return name.includes("-JS-") || name.endsWith("-JS");
+    return true;
+  };
 
-    return names.filter((name) => {
-      // Check suffix filter
-      const suffixMatch =
-        suffixFilter === "all" || name.endsWith(`-${suffixFilter}`);
+  const matchesSuffix = (name: string) => {
+    return suffixFilter === "all" || name.endsWith(`-${suffixFilter}`);
+  };
 
-      // Check language filter
-      let languageMatch = true;
-      if (languageFilter === "TS") {
-        languageMatch = name.includes("-TS-") || name.endsWith("-TS");
-      } else if (languageFilter === "JS") {
-        languageMatch = name.includes("-JS-") || name.endsWith("-JS");
-      }
-
-      return suffixMatch && languageMatch;
-    });
-  }, [names, suffixFilter, languageFilter, shouldShowFilters]);
+  const filteredNames = shouldShowFilters
+    ? names.filter((name) => matchesSuffix(name) && matchesLanguage(name))
+    : names;
 
   return (
     <div>
@@ -124,7 +116,7 @@ export default function ComponentGrid({ names, title }: ComponentGridProps) {
                 return (
                   <Button
                     key={suffix}
-                    onClick={() => setSuffixFilter(suffix)}
+                    onClick={() => setSuffixFilter(suffix!)}
                     variant={suffixFilter === suffix ? "default" : "outline"}
                     size="sm"
                   >
@@ -144,12 +136,14 @@ export default function ComponentGrid({ names, title }: ComponentGridProps) {
 
       {/* Component Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredNames.map((name , index) => {
+        {filteredNames.map((name, index) => {
           const isSelected = selectedComponents.includes(name);
           return (
             <div
               className={`border flex items-center lowercase p-2 justify-center text-md text-center leading-snug min-h-fit cursor-pointer transition-colors ${
-                isSelected ? "bg-primary text-primary-foreground" : "hover:bg-accent"
+                isSelected
+                  ? "bg-primary text-primary-foreground"
+                  : "hover:bg-accent"
               }`}
               key={` component-${name}-${index}`}
               onClick={() => {
@@ -174,5 +168,3 @@ export default function ComponentGrid({ names, title }: ComponentGridProps) {
     </div>
   );
 }
-
-
