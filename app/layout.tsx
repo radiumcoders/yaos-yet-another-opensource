@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
 import Container from "@/components/core/container";
-import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/core/navbar";
-import { NuqsAdapter } from "nuqs/adapters/next/app";
-import { Toaster } from "@/components/ui/sonner";
 import Providers from "@/components/query-provider";
+import { Toaster } from "@/components/ui/sonner";
+import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
+import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
+import "./globals.css";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -39,22 +38,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}
       >
-        <Providers>
-          <ThemeProvider attribute="class">
-            <header className="w-full ">
-              <Navbar />
-              <Container>
-                <div className="h-8 border-b border-edge w-full text-primary/10 flex items-center justify-center">
-                  <span>YAOS - yet another open source</span>
-                </div>
-              </Container>
-            </header>
-            <Container className="flex-1">
-              {children}
-            </Container>
+
+          <Providers>
+            <ThemeProvider attribute="class">
+              <header className="w-full ">
+                <Navbar />
+                <Container>
+                  <div className="h-8 border-b border-edge w-full text-primary/10 flex items-center justify-center">
+                    <span>YAOS - yet another open source</span>
+                  </div>
+                </Container>
+              </header>
+              <Container className="flex-1">{children}</Container>
               <Toaster />
-          </ThemeProvider>
-        </Providers>
+            </ThemeProvider>
+          </Providers>
+
       </body>
     </html>
   );
