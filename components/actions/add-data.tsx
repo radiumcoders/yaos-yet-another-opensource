@@ -45,7 +45,9 @@ function AddDataForm() {
   // Track the selected category to conditionally show UI Library-specific fields
   const [category, setCategory] = useState("ui-library");
   const [rawUrlError, setRawUrlError] = useState<string | null>(null);
-  const [registryNameError, setRegistryNameError] = useState<string | null>(null);
+  const [registryNameError, setRegistryNameError] = useState<string | null>(
+    null
+  );
   // Check if the selected category is UI Library
   const isUi = category === "ui-library";
   return (
@@ -144,7 +146,8 @@ function AddDataForm() {
                     const result = registryNameSchema.safeParse(e.target.value);
                     if (!result.success) {
                       setRegistryNameError(
-                        result.error.issues[0]?.message || "Invalid registry name"
+                        result.error.issues[0]?.message ||
+                          "Invalid registry name"
                       );
                     } else {
                       setRegistryNameError(null);
