@@ -1,6 +1,7 @@
 "use client";
 import { addData } from "@/server/add-actions";
 import { useState } from "react";
+import { z } from "zod";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -25,9 +26,26 @@ import { Textarea } from "../ui/textarea";
  * AddDataForm component - A form for submitting new open source projects
  * Allows users to add project details including title, description, category, and GitHub URLs
  */
+// Validation schema for GitHub Raw URL
+const rawUrlSchema = z
+  .string()
+  .url()
+  .refine((url) => url.startsWith("https://raw.githubusercontent.com/"), {
+    message: "URL must be a raw.githubusercontent.com URL",
+  });
+
+// Validation schema for Registry Name
+const registryNameSchema = z
+  .string()
+  .refine((value) => value.includes("@") || value.includes("https"), {
+    message: "Registry name must include @ or https",
+  });
+
 function AddDataForm() {
   // Track the selected category to conditionally show UI Library-specific fields
   const [category, setCategory] = useState("ui-library");
+  const [rawUrlError, setRawUrlError] = useState<string | null>(null);
+  const [registryNameError, setRegistryNameError] = useState<string | null>(null);
   // Check if the selected category is UI Library
   const isUi = category === "ui-library";
   return (
@@ -99,16 +117,44 @@ function AddDataForm() {
                   name="githubRawUrl"
                   placeholder="https://raw.githubusercontent.com/username/repo/main/registry.json"
                   required={category === "ui-library"}
+                  onChange={(e) => {
+                    const result = rawUrlSchema.safeParse(e.target.value);
+                    if (!result.success) {
+                      setRawUrlError(
+                        result.error.issues[0]?.message || "Invalid URL"
+                      );
+                    } else {
+                      setRawUrlError(null);
+                    }
+                  }}
+                  className={rawUrlError ? "border-red-500" : ""}
                 />
+                {rawUrlError && (
+                  <p className="text-sm text-red-500">{rawUrlError}</p>
+                )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="registrieName">Registry Name</Label>
                 <Input
                   id="registrieName"
                   name="registrieName"
-                  placeholder="e.g. @8bitcn ..."
+                  placeholder="e.g. @8bitcn ... OR https://billui.com/r/"
                   required={category === "ui-library"}
+                  onChange={(e) => {
+                    const result = registryNameSchema.safeParse(e.target.value);
+                    if (!result.success) {
+                      setRegistryNameError(
+                        result.error.issues[0]?.message || "Invalid registry name"
+                      );
+                    } else {
+                      setRegistryNameError(null);
+                    }
+                  }}
+                  className={registryNameError ? "border-red-500" : ""}
                 />
+                {registryNameError && (
+                  <p className="text-sm text-red-500">{registryNameError}</p>
+                )}
               </div>
             </>
           )}
