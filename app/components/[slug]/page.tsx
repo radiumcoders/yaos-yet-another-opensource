@@ -20,6 +20,7 @@ export default async function Page({
         {data.at(0)?.title?.replace(/-/g, " ")}
       </h1>
       <p className="mb-6">{data.at(0)?.description}</p>
+      <p className="mb-3">Select Multiple OR Single Components  To Generate Command:</p>
       <Grid name={names} rigName={data.at(0)?.registrieName || ""} />
     </Container>
   );
