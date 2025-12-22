@@ -7,7 +7,7 @@ export async function generateCommand({
   components: Array<string>;
   rigName: string;
 }) {
-  const joined = `pnpm add ${components
+  const joined = `pnpx shadcn@latest add ${components
     .map((comp) => `${rigName}/${comp}`)
     .join(" ")}`;
   console.log("Generated Command:", joined);
