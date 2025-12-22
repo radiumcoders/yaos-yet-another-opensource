@@ -9,7 +9,7 @@ export async function generateCommand({
 }) {
   const joined = `pnpx shadcn@latest add ${components
     .map((comp) => `${rigName}/${comp}`)
-    .join(" ")}`;
+    .join(" ")}${rigName.includes("https://") ? ".json" : ""}`;
   console.log("Generated Command:", joined);
   return joined;
 }

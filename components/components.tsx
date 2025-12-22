@@ -92,11 +92,11 @@ const Grid: React.FC<ComponentNameProps> = ({ name, rigName }) => {
                 <span className="block">
                   Copy the command below to install your selected components:
                 </span>
-                <div className=" p-4 rounded-lg">
+                <span className="block p-4 rounded-lg">
                   <code className="text-sm break-all font-mono">
                     {generatedCommand}
                   </code>
-                </div>
+                </span>
                 <Button
                   onClick={() => {
                     navigator.clipboard.writeText(generatedCommand);
