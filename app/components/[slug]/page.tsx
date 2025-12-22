@@ -1,6 +1,7 @@
 import { getFromTitle } from "@/server/add-actions";
 import { fetchComponentNames } from "@/server/fetch-component-names";
 import Container from "@/components/core/container";
+import Grid from "@/components/components";
 
 export default async function Page({
   params,
@@ -10,7 +11,7 @@ export default async function Page({
   const { slug } = await params;
   const data = await getFromTitle(slug);
   const names: Array<string> = await fetchComponentNames(
-    data.at(0)?.githubRawUrl || ""
+    data.at(0)?.githubRawUrl || "",
   );
 
   return (
@@ -19,8 +20,7 @@ export default async function Page({
         {data.at(0)?.title?.replace(/-/g, " ")}
       </h1>
       <p className="mb-6">{data.at(0)?.description}</p>
-      <h2 className="text-2xl font-semibold mb-4">Components:</h2>
-
+      <Grid name={names} rigName={data.at(0)?.registrieName || ""} />
     </Container>
   );
 }

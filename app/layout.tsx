@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -38,7 +39,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}
       >
-
+        <NuqsAdapter>
           <Providers>
             <ThemeProvider attribute="class">
               <header className="w-full ">
@@ -53,7 +54,7 @@ export default function RootLayout({
               <Toaster />
             </ThemeProvider>
           </Providers>
-
+        </NuqsAdapter>
       </body>
     </html>
   );
