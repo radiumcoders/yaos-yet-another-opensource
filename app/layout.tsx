@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Analytics } from "@vercel/analytics/next";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -56,6 +57,7 @@ export default function RootLayout({
           </Providers>
         </NuqsAdapter>
       </body>
+      <Analytics />
     </html>
   );
 }
