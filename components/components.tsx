@@ -64,12 +64,12 @@ const Grid: React.FC<ComponentNameProps> = ({ name, rigName }) => {
       <Container className="grid grid-cols-3 gap-3">
         {name.map((item, index) => (
           <Button
-            className="grid-cols-1 text-md"
+            className="text-md text-center"
             variant={selectedItems.includes(item) ? "default" : "outline"}
             key={`${item}-${index}`}
             onClick={() => toggleSelection(item)}
           >
-            {item}
+            <span className="truncate block w-full">{item}</span>
           </Button>
         ))}
 
