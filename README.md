@@ -14,8 +14,6 @@ YAOS is a modern, beautifully designed web platform that brings together the mos
 - **🎨 Curated UI Libraries** - Discover beautiful component libraries like shadcn/ui, Magic UI, Aceternity UI, and more
 - **🛠️ Developer Tools** - Find productivity tools, analytics platforms, table builders, and monitoring dashboards
 - **💼 Portfolio Templates** - Browse stunning portfolio templates to showcase your work
-- **🔍 Smart Search** - Quickly find projects with real-time search functionality
-- **🏷️ Category Filtering** - Filter by UI Libraries, Tools, Portfolios, and more
 - **🌙 Modern Design** - Sleek, dark-themed interface with smooth animations and hover effects
 - **📱 Fully Responsive** - Perfect experience on desktop, tablet, and mobile devices
 - **⚡ Fast & Lightweight** - Built with performance in mind
