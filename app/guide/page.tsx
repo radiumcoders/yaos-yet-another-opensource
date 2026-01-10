@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/card";
 
 async function getApiGuide() {
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+  const API_BASE_URL =
+    process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
   const response = await fetch(`${API_BASE_URL}/api/guide`, {
     cache: "no-store",
   });
@@ -116,7 +117,10 @@ export default async function ApiGuidePage() {
                 <div className="px-3 py-2 bg-muted rounded-md space-y-1">
                   <p className="font-mono text-sm">
                     <span className="font-semibold">category</span> (required) -{" "}
-                    {guide.endpoints.data.getDataByCategory.parameters.category.description}
+                    {
+                      guide.endpoints.data.getDataByCategory.parameters.category
+                        .description
+                    }
                   </p>
                 </div>
               </div>
@@ -176,7 +180,11 @@ export default async function ApiGuidePage() {
                 <p className="font-semibold mb-2">Request Body:</p>
                 <div className="px-3 py-2 bg-muted rounded-md">
                   <pre className="text-sm overflow-x-auto">
-                    {JSON.stringify(guide.endpoints.data.addData.example, null, 2)}
+                    {JSON.stringify(
+                      guide.endpoints.data.addData.example,
+                      null,
+                      2
+                    )}
                   </pre>
                 </div>
               </div>
@@ -185,12 +193,16 @@ export default async function ApiGuidePage() {
                 <ul className="list-disc list-inside space-y-1 text-sm">
                   <li>title - Project title</li>
                   <li>description - Project description</li>
-                  <li>catagory - One of: {guide.categories.available.join(", ")}</li>
+                  <li>
+                    catagory - One of: {guide.categories.available.join(", ")}
+                  </li>
                   <li>githubUrl - GitHub repository URL</li>
                 </ul>
               </div>
               <div>
-                <p className="font-semibold mb-2">Optional Fields (required for ui-library):</p>
+                <p className="font-semibold mb-2">
+                  Optional Fields (required for ui-library):
+                </p>
                 <ul className="list-disc list-inside space-y-1 text-sm">
                   <li>githubRawUrl - Raw URL to registry.json</li>
                   <li>registrieName - Registry identifier</li>
@@ -262,8 +274,12 @@ export default async function ApiGuidePage() {
                 <p className="font-semibold mb-2">Parameters:</p>
                 <div className="px-3 py-2 bg-muted rounded-md">
                   <p className="font-mono text-sm">
-                    <span className="font-semibold">url</span> (required, query) -{" "}
-                    {guide.endpoints.components.fetchComponentNames.parameters.url.description}
+                    <span className="font-semibold">url</span> (required, query)
+                    -{" "}
+                    {
+                      guide.endpoints.components.fetchComponentNames.parameters
+                        .url.description
+                    }
                   </p>
                 </div>
               </div>
@@ -281,7 +297,9 @@ export default async function ApiGuidePage() {
                 <Badge className="bg-blue-600">
                   {guide.endpoints.commands.generateCommand.method}
                 </Badge>
-                <CardTitle className="text-xl">Generate Installation Command</CardTitle>
+                <CardTitle className="text-xl">
+                  Generate Installation Command
+                </CardTitle>
               </div>
               <CardDescription>
                 {guide.endpoints.commands.generateCommand.description}
@@ -298,7 +316,11 @@ export default async function ApiGuidePage() {
                 <p className="font-semibold mb-2">Request Body:</p>
                 <div className="px-3 py-2 bg-muted rounded-md">
                   <pre className="text-sm overflow-x-auto">
-                    {JSON.stringify(guide.endpoints.commands.generateCommand.example, null, 2)}
+                    {JSON.stringify(
+                      guide.endpoints.commands.generateCommand.example,
+                      null,
+                      2
+                    )}
                   </pre>
                 </div>
               </div>
@@ -306,7 +328,11 @@ export default async function ApiGuidePage() {
                 <p className="font-semibold mb-2">Response Example:</p>
                 <div className="px-3 py-2 bg-muted rounded-md">
                   <pre className="text-sm overflow-x-auto">
-                    {JSON.stringify(guide.endpoints.commands.generateCommand.response.success, null, 2)}
+                    {JSON.stringify(
+                      guide.endpoints.commands.generateCommand.response.success,
+                      null,
+                      2
+                    )}
                   </pre>
                 </div>
               </div>
@@ -318,7 +344,9 @@ export default async function ApiGuidePage() {
         <Card>
           <CardHeader>
             <CardTitle>Error Codes</CardTitle>
-            <CardDescription>Common HTTP status codes returned by the API</CardDescription>
+            <CardDescription>
+              Common HTTP status codes returned by the API
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
             {Object.entries(guide.errorCodes).map(([code, description]) => (
