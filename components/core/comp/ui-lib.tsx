@@ -10,6 +10,7 @@ import Cards from "../ness/cards";
 
 import { getData } from "@/lib/api-utils";
 import Header from "@/components/header";
+import { dataType } from "@/types/type";
 
 async function UiPart({ catagory }: { catagory: string }) {
   const data = await getData(catagory);
@@ -19,7 +20,7 @@ async function UiPart({ catagory }: { catagory: string }) {
       <Header catagory={catagory} seeMore={true} />
       <Carousel>
         <CarouselContent>
-          {data.map((item) => (
+          {data.map((item: dataType) => (
             <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
               <Cards
                 title={item.title}

@@ -2,6 +2,7 @@ import { getData } from "@/lib/api-utils";
 import Container from "@/components/core/container";
 import Cards from "@/components/core/ness/cards";
 import Header from "@/components/header";
+import { dataType } from "@/types/type";
 
 export default async function Page({
   params,
@@ -15,7 +16,7 @@ export default async function Page({
     <Container className="p-4 flex flex-col gap-4 h-fit border-b border-edge">
       <Header catagory={slug} seeMore={false} />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {data.map((item) => (
+        {data.map((item: dataType) => (
           <div key={item.id}>
             <Cards
               title={item.title}
