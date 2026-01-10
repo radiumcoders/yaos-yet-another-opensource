@@ -8,7 +8,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { generateCommand } from "@/server/generate-command";
 import { X } from "lucide-react";
 import { parseAsArrayOf, parseAsString, useQueryState } from "nuqs";
 import * as React from "react";
@@ -41,11 +40,18 @@ const Grid: React.FC<ComponentNameProps> = ({ name, rigName }) => {
         setGeneratedCommand("");
         return;
       }
-      const command = await generateCommand({
-        components: selectedItems,
-        rigName,
+      const response = await fetch("/api/generate-command", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          components: selectedItems,
+          rigName,
+        }),
       });
-      setGeneratedCommand(command);
+      const data = await response.json();
+      setGeneratedCommand(data.command);
     }
     fetchCommand();
   }, [selectedItems, rigName]);

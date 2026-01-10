@@ -1,5 +1,4 @@
-import { getFromTitle } from "@/server/add-actions";
-import { fetchComponentNames } from "@/server/fetch-component-names";
+import { getFromTitle, fetchComponentNames } from "@/lib/api-utils";
 import Container from "@/components/core/container";
 import Grid from "@/components/components";
 

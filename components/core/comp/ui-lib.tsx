@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/carousel";
 import Cards from "../ness/cards";
 
-import { getData } from "@/server/add-actions";
+import { getData } from "@/lib/api-utils";
 import Header from "@/components/header";
 
 async function UiPart({ catagory }: { catagory: string }) {

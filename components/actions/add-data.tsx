@@ -1,6 +1,6 @@
 "use client";
-import { addData } from "@/server/add-actions";
 import { useState } from "react";
+import { toast } from "sonner";
 import { z } from "zod";
 import { Button } from "../ui/button";
 import {
@@ -58,7 +58,34 @@ function AddDataForm() {
           Share your open source project with the community.
         </CardDescription>
       </CardHeader>
-      <form action={addData}>
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.currentTarget);
+          const response = await fetch("/api/data/add", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: formData.get("title"),
+              description: formData.get("description"),
+              catagory: formData.get("catagory"),
+              githubUrl: formData.get("githubUrl"),
+              githubRawUrl: formData.get("githubRawUrl"),
+              registrieName: formData.get("registrieName"),
+            }),
+          });
+          if (response.ok) {
+            toast.success("Project added successfully!");
+            e.currentTarget.reset();
+            setRawUrlError(null);
+            setRegistryNameError(null);
+          } else {
+            toast.error("Failed to add project");
+          }
+        }}
+      >
         <CardContent className="space-y-4">
           {/* Project title input field */}
           <div className="space-y-2">
