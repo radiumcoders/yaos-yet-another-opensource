@@ -58,13 +58,6 @@ We love contributions! YAOS is a community-driven project, and we welcome:
 - Design enhancements
 - Feature suggestions
 
-### How to Submit a New Project
-
-1. Fork the repository
-2. Add your project to the appropriate category in the data file
-3. Include: name, description, category, and GitHub/website link
-4. Create a pull request with a clear description
-5. Wait for review and merge!
 
 **Project Criteria:**
 
