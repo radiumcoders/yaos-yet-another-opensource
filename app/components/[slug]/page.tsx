@@ -43,7 +43,7 @@ export default async function Page({
     : names;
 
   return (
-    <Container className="p-4 h-fit">
+    <Container className="p-4 h-fit border-x-0">
       <h1 className="text-3xl font-bold mb-4">
         {data.at(0)?.title?.replace(/-/g, " ")}
       </h1>
