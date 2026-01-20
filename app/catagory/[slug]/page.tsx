@@ -12,7 +12,7 @@ export default async function Page({
   const data = await getData(slug);
 
   return (
-    <Container className="p-4 flex flex-col gap-4 h-fit border-b border-edge">
+    <Container className="p-4 flex flex-col gap-4 h-fit border-b border-x-0 border-edge">
       <Header catagory={slug} seeMore={false} />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {data.map((item) => (
