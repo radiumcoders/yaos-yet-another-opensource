@@ -26,6 +26,10 @@ const Grid: React.FC<ComponentNameProps> = ({ name, rigName }) => {
   );
   const [generatedCommand, setGeneratedCommand] = React.useState("");
   const [isOverlayOpen, setIsOverlayOpen] = React.useState(false);
+  const [npmClient, setNpmClient] = useQueryState(
+    "npmClient",
+    parseAsString.withDefault("npm")
+  );
 
   const toggleSelection = (item: string) => {
     if (selectedItems.includes(item)) {
@@ -44,11 +48,12 @@ const Grid: React.FC<ComponentNameProps> = ({ name, rigName }) => {
       const command = await generateCommand({
         components: selectedItems,
         rigName,
+        npm: npmClient
       });
       setGeneratedCommand(command);
     }
     fetchCommand();
-  }, [selectedItems, rigName]);
+  }, [selectedItems, rigName, npmClient]);
 
   return (
     <>
@@ -88,6 +93,11 @@ const Grid: React.FC<ComponentNameProps> = ({ name, rigName }) => {
                   <X />
                 </Button>
               </AlertDialogTitle>
+              <div className="flex gap-2 my-4">
+                <Button variant="outline" size="sm" onClick={() => setNpmClient("npx")}>npm</Button>
+                <Button variant="outline" size="sm" onClick={() => setNpmClient("pnpx dlx")}>pnpm</Button>
+                <Button variant="outline" size="sm" onClick={() => setNpmClient("bun x --bun")}>bun</Button>
+              </div>
               <AlertDialogDescription className="space-y-4">
                 <span className="block">
                   Copy the command below to install your selected components:
