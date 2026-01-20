@@ -1,8 +1,8 @@
 # YAOS - Yet Another Open Source
 
-![Preview](public/image.png)
-
 > A curated showcase of the best open source projects, UI libraries, and developer tools for your next amazing project.
+
+> ![Preview](public/image.png)
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen.svg)](https://yaos.vercel.app)
 
@@ -11,12 +11,6 @@
 YAOS is a modern, beautifully designed web platform that brings together the most valuable open source resources in one place. Whether you're building your next SaaS, portfolio, or side project, YAOS helps you discover the perfect tools and components to accelerate your development.
 
 **Live at:** [yaos.vercel.app](https://yaos.vercel.app)
-
-## Features
-
-- **Curated UI Libraries** - Discover beautiful component libraries like shadcn/ui, Magic UI, Aceternity UI, and more
-- **Developer Tools** - Find productivity tools, analytics platforms, table builders, and monitoring dashboards
-- **Portfolio Templates** - Browse stunning portfolio templates to showcase your work
 
 ## Categories
 
@@ -28,17 +22,13 @@ Comprehensive collection of component libraries and design systems:
 
 Professionally designed portfolio templates:
 
-
 ### Developer Tools
 
 Essential tools for modern development:
 
-
-
 ### Other Projects
 
 Unique and creative open source projects:
-
 
 ## Built With
 
@@ -57,7 +47,6 @@ We love contributions! YAOS is a community-driven project, and we welcome:
 - Documentation improvements
 - Design enhancements
 - Feature suggestions
-
 
 **Project Criteria:**
 
@@ -80,10 +69,7 @@ If you find YAOS useful, please consider giving it a star!
 ## Contact
 
 Have questions or suggestions? Feel free to:
-
-- Open an issue on GitHub
-- Submit a pull request
-- Reach out on Twitter/X
+- [ Reach out on Twitter/X ](https://x.com/radiumcoders)
 
 ---
 
