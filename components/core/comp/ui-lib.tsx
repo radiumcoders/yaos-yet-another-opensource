@@ -20,7 +20,7 @@ async function UiPart({ catagory }: { catagory: string }) {
       <Carousel>
         <CarouselContent>
           {data.map((item) => (
-            <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
+            <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3 ">
               <Cards
                 title={item.title}
                 description={item.description}

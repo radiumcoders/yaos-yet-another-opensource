@@ -23,7 +23,7 @@ function Cards({ title, description, githubUrl, isUi }: CardsProps) {
   const router = useRouter();
   
   return (
-    <Card className="overflow-hidden h-full flex flex-col justify-between">
+    <Card className="overflow-hidden h-full border-x-0 flex flex-col justify-between">
       <CardHeader>
         <CardTitle className="text-2xl font-bold truncate">{title}</CardTitle>
         <CardDescription className="line-clamp-3">
