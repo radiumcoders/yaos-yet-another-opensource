@@ -2,6 +2,7 @@
 import { addData } from "@/server/add-actions";
 import { useState } from "react";
 import { z } from "zod";
+import Link from "next/link";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -21,6 +22,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Textarea } from "../ui/textarea";
+import { X } from "lucide-react";
 
 /**
  * AddDataForm component - A form for submitting new open source projects
@@ -46,17 +48,24 @@ function AddDataForm() {
   const [category, setCategory] = useState("ui-library");
   const [rawUrlError, setRawUrlError] = useState<string | null>(null);
   const [registryNameError, setRegistryNameError] = useState<string | null>(
-    null
+    null,
   );
   // Check if the selected category is UI Library
   const isUi = category === "ui-library";
   return (
     <Card className="w-full max-w-md mx-auto">
-      <CardHeader>
-        <CardTitle>Add New Project</CardTitle>
-        <CardDescription>
-          Share your open source project with the community.
-        </CardDescription>
+      <CardHeader className="flex flex-row items-center justify-between">
+        <div>
+          <CardTitle>Add New Project</CardTitle>
+          <CardDescription>
+            Share your open source project with the community.
+          </CardDescription>
+        </div>
+        <Link href="/">
+          <Button variant="outline" size="icon-sm">
+            <X />
+          </Button>
+        </Link>
       </CardHeader>
       <form action={addData}>
         <CardContent className="space-y-4">
@@ -123,7 +132,7 @@ function AddDataForm() {
                     const result = rawUrlSchema.safeParse(e.target.value);
                     if (!result.success) {
                       setRawUrlError(
-                        result.error.issues[0]?.message || "Invalid URL"
+                        result.error.issues[0]?.message || "Invalid URL",
                       );
                     } else {
                       setRawUrlError(null);
@@ -147,7 +156,7 @@ function AddDataForm() {
                     if (!result.success) {
                       setRegistryNameError(
                         result.error.issues[0]?.message ||
-                          "Invalid registry name"
+                          "Invalid registry name",
                       );
                     } else {
                       setRegistryNameError(null);
