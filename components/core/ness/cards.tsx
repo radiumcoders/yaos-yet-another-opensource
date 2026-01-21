@@ -21,28 +21,39 @@ type CardsProps = {
 
 function Cards({ title, description, githubUrl, isUi }: CardsProps) {
   const router = useRouter();
-  
+
   return (
     <Card className="overflow-hidden h-full border-x-0 flex flex-col justify-between">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold truncate">{title}</CardTitle>
-        <CardDescription className="line-clamp-3">
+        <CardTitle className="text-2xl capitalize font-b truncate">
+          {title}
+        </CardTitle>
+        <CardDescription className="line-clamp-3 text-md">
           {description}
         </CardDescription>
       </CardHeader>
       <CardFooter>
-          <div className="flex flex-col gap-2 w-full">
-            <Link href={githubUrl} target="_blank" rel="noopener noreferrer" className="w-full">
-            <Button className="w-full" variant="outline">
+        <div className="flex flex-col gap-2 w-full">
+          <Link
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full"
+          >
+            <Button className="w-full tracking-wider capitalize " variant="outline">
               visit
             </Button>
           </Link>
           {isUi && (
-            <Button onClick={() => router.push(`/components/${title}`)} className="w-full" variant="outline">
+            <Button
+              onClick={() => router.push(`/components/${title}`)}
+              className="w-full tracking-wide capitalize "
+              variant="outline"
+            >
               view components list
             </Button>
           )}
-          </div>
+        </div>
       </CardFooter>
     </Card>
   );

@@ -36,7 +36,7 @@ function Navbar() {
     <Container className="h-16 w-full border-b  border-x border-edge">
       <div className="h-full w-full flex items-center justify-between p-4">
         <div className="logo">
-          <span onClick={() => router.push("/")} className="font-bold text-xl">
+          <span onClick={() => router.push("/")} className="font-bold font-mono text-xl">
             YAOS
           </span>
         </div>
