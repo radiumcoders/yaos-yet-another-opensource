@@ -75,4 +75,4 @@ Have questions or suggestions? Feel free to:
 
 **[Website](https://yaos.vercel.app)** • **[GitHub](https://github.com/radiumcoders/yaos-yet-another-opensource)**
 
-Made with 💙 by Radium-Coders
+Made with 💙 by Radium-Coders in nvim and arch btw :D
