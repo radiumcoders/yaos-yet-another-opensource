@@ -1,8 +1,8 @@
 "use server";
 import { db } from "@/db/index";
 import { dataTable } from "@/db/schema";
-import { eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
+import { eq, ilike } from "drizzle-orm";
+import { revalidatePath, unstable_cache } from "next/cache";
 import { v4 as uuid } from "uuid";
 
 export const getData = async (catagory?: string) => {
@@ -16,6 +16,20 @@ export const getData = async (catagory?: string) => {
   const data = await db.select().from(dataTable);
   return data;
 };
+
+export const getDataBySearch = unstable_cache(
+  async (search: string) => {
+    const data = await db
+      .select()
+      .from(dataTable)
+      .where(ilike(dataTable.title, `%${search}%`));
+    return data;
+  },
+  ["search-data"],
+  {
+    tags: ["search"],
+  },
+);
 
 export const addData = async (formData: FormData) => {
   const title = (formData.get("title") as string).replace(/ /g, "-");
