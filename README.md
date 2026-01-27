@@ -6,6 +6,8 @@
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen.svg)](https://yaos.vercel.app)
 
+Made with 💙 by Radium-Coders in nvim and arch btw :D
+
 ## What is YAOS?
 
 YAOS is a modern, beautifully designed web platform that brings together the most valuable open source resources in one place. Whether you're building your next SaaS, portfolio, or side project, YAOS helps you discover the perfect tools and components to accelerate your development.
@@ -69,10 +71,9 @@ If you find YAOS useful, please consider giving it a star!
 ## Contact
 
 Have questions or suggestions? Feel free to:
+
 - [ Reach out on Twitter/X ](https://x.com/radiumcoders)
 
 ---
 
 **[Website](https://yaos.vercel.app)** • **[GitHub](https://github.com/radiumcoders/yaos-yet-another-opensource)**
-
-Made with 💙 by Radium-Coders in nvim and arch btw :D
