@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import ASCIIAnimation from "@/components/ascii-animation";
 
 export default function Page() {
   return (
@@ -12,7 +13,7 @@ export default function Page() {
           You've Been Looking For :D
         </h1>
       </div>
-      
+
       {/* Hero Description */}
       <p className="pb-6 sm:pb-8 font-geist-pixel-grid text-sm sm:text-base">
         A handpicked collection of open-source UI libraries, portfolio
@@ -20,18 +21,37 @@ export default function Page() {
         free. All open.
       </p>
 
-      {/* CTA Buttons */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pb-8 sm:pb-10">
-        <Link href="/libs">
-          <Button size="lg" className="w-full sm:w-auto px-8 py-6 text-md font-geist-pixel-square">
-            Explore Collection
-          </Button>
-        </Link>
-        <Link href="/submit">
-          <Button size="lg" variant="outline" className="w-full sm:w-auto px-8 py-6 text-md font-geist-pixel-square font-medium">
-            Add to List
-          </Button>
-        </Link>
+      {/* CTA Buttons with ASCII Animation Background */}
+      <div className="relative pb-8 sm:pb-10">
+        {/* ASCII Animation - Positioned Behind */}
+
+        {/* CTA Buttons - Original Position */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <Link href="/libs">
+            <Button
+              size="lg"
+              className="w-full sm:w-auto px-8 py-6 text-md font-geist-pixel-square relative z-10"
+            >
+              Explore Collection
+            </Button>
+          </Link>
+          <Link href="/submit">
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full bg-background sm:w-auto px-8 py-6 text-md font-geist-pixel-square font-medium relative z-10"
+            >
+              Add to List
+            </Button>
+          </Link>
+        </div>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1 pointer-events-none -z-10 overflow-hidden">
+          <ASCIIAnimation
+            fps={10}
+            colorOverlay={false}
+            className="text-base sm:text-lg md:text-xl lg:text-2xl leading-tight opacity-40"
+          />
+        </div>
       </div>
     </main>
   );
