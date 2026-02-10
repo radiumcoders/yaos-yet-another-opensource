@@ -11,11 +11,16 @@ import {
   X,
 } from "@phosphor-icons/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Navbar() {
   const { theme, setTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -31,7 +36,9 @@ function Navbar() {
         <div className="flex items-center justify-between gap-4 h-16 w-full max-w-7xl mx-auto px-4">
           {/* logo */}
           <Link href="/">
-            {theme === "light" ? (
+            {!mounted ? (
+              <Image src="/logo.svg" alt="Logo" width={50} height={50} />
+            ) : theme === "light" ? (
               <Image src="/logo.svg" alt="Logo" width={50} height={50} />
             ) : (
               <Image src="/logo-dark.svg" alt="Logo" width={50} height={50} />
@@ -75,7 +82,7 @@ function Navbar() {
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               className="hidden md:flex"
             >
-              {theme === "light" ? <MoonIcon /> : <SunIcon />}
+              {!mounted ? <SunIcon /> : theme === "light" ? <MoonIcon /> : <SunIcon />}
             </Button>
 
             {/* Mobile menu button */}
@@ -103,7 +110,9 @@ function Navbar() {
           {/* Mobile menu header */}
           <div className="flex items-center justify-between h-16 px-4 border-b border-border">
             <Link href="/" onClick={closeMobileMenu}>
-              {theme === "light" ? (
+              {!mounted ? (
+                <Image src="/logo.svg" alt="Logo" width={50} height={50} />
+              ) : theme === "light" ? (
                 <Image src="/logo.svg" alt="Logo" width={50} height={50} />
               ) : (
                 <Image src="/logo-dark.svg" alt="Logo" width={50} height={50} />
@@ -164,7 +173,7 @@ function Navbar() {
                 variant="outline"
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               >
-                {theme === "light" ? <MoonIcon /> : <SunIcon />}
+                {!mounted ? <SunIcon /> : theme === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
             </div>
           </div>

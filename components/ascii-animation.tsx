@@ -34,10 +34,10 @@ export default function ASCIIAnimation({
       }
 
       try {
-        // Load 61 frames from public/ascii folder
+        // Load 41 frames from public/ascii folder (frame_0021.txt to frame_0061.txt)
         const frameFiles = Array.from(
-          { length: 61 },
-          (_, i) => `frame_${String(i + 1).padStart(4, "0")}.txt`,
+          { length: 41 },
+          (_, i) => `frame_${String(i + 21).padStart(4, "0")}.txt`,
         );
 
         const framePromises = frameFiles.map(async (filename) => {

@@ -47,7 +47,7 @@ export default function Page() {
         </div>
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1 pointer-events-none -z-10 overflow-hidden">
           <ASCIIAnimation
-            fps={10}
+            fps={15}
             colorOverlay={false}
             className="text-base sm:text-lg md:text-xl lg:text-2xl leading-tight opacity-40"
           />
