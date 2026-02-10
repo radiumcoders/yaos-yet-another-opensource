@@ -2,7 +2,12 @@
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { Button } from "../ui/button";
-import { GithubLogoIcon, MoonIcon, SunIcon } from "@phosphor-icons/react";
+import {
+  GithubLogoIcon,
+  MoonIcon,
+  SunIcon,
+  XLogoIcon,
+} from "@phosphor-icons/react";
 import Link from "next/link";
 
 function Navbar() {
@@ -42,6 +47,13 @@ function Navbar() {
                 <GithubLogoIcon size={32} />
               </Button>
             </Link>
+
+            <Link href={"https://x.com/radiumcoders"}>
+              <Button size={"icon-lg"}>
+                <XLogoIcon size={32} />
+              </Button>
+            </Link>
+
             <Button
               size={"icon-lg"}
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
