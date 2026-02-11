@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Page() {
   return (
     <>
-      {/* Light Rays Background - Dark mode only */}
+      {/* Light Rays Background - Dark mode only
       <div className="fixed inset-0 w-screen h-screen pointer-events-none z-0 hidden dark:block">
         <LightRays
           raysOrigin="top-center"
@@ -25,7 +25,7 @@ export default function Page() {
           fadeDistance={1}
           saturation={1}
         />
-      </div>
+      </div> */}
       {/* Fire ASCII Animation Background - Full Screen */}
       <Container className="fixed inset-0 w-screen h-screen pointer-events-none flex items-center justify-end z-0 overflow-hidden">
         <FireASCIIAnimation
