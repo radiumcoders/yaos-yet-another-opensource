@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# YAOS - Yet Another Open Source
 
-## Getting Started
+> A curated showcase of the best open source projects, UI libraries, and developer tools for your next amazing project.
 
-First, run the development server:
+<!-- > ![Preview](public/image.png) -->
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen.svg)](https://yaos.vercel.app)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Made with 💙 by Radium-Coders in nvim and arch btw :D
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What is YAOS?
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+YAOS is a modern, beautifully designed web platform that brings together the most valuable open source resources in one place. Whether you're building your next SaaS, portfolio, or side project, YAOS helps you discover the perfect tools and components to accelerate your development.
 
-## Learn More
+**Live at:** [yaos.vercel.app](https://yaos.vercel.app)
 
-To learn more about Next.js, take a look at the following resources:
+## Categories
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### UI Libraries
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Comprehensive collection of component libraries and design systems:
 
-## Deploy on Vercel
+### Portfolio Templates
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Professionally designed portfolio templates:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Developer Tools
+
+Essential tools for modern development:
+
+### Other Projects
+
+Unique and creative open source projects:
+
+## Built With
+
+- **Framework:** Next.js / React
+- **Styling:** Tailwind CSS
+- **Icons:** Lucide React
+- **Deployment:** Vercel
+- **Language:** TypeScript/JavaScript
+
+## Contributing
+
+We love contributions! YAOS is a community-driven project, and we welcome:
+
+- Bug reports and fixes
+- New project submissions
+- Documentation improvements
+- Design enhancements
+- Feature suggestions
+
+**Project Criteria:**
+
+- Must be open source
+- Active maintenance (recent commits)
+- Good documentation
+- Clear value proposition
+- Appropriate license
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=radiumcoders/yaos-yet-another-opensource&type=date&legend=top-left)](https://www.star-history.com/#radiumcoders/yaos-yet-another-opensource&type=date&legend=top-left)
+
+## Acknowledgments
+
+- Thanks to all the amazing open source maintainers whose projects are featured
+- Inspired by the incredible open source community
+- Built with love for developers, by developers
+
+## Contact
+
+Have questions or suggestions? Feel free to:
+
+- [ Reach out on Twitter/X ](https://x.com/radiumcoders)
+
+---
+
+**[Website](https://yaos.vercel.app)** • **[GitHub](https://github.com/radiumcoders/yaos-yet-another-opensource)**
