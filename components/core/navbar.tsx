@@ -46,7 +46,7 @@ function Navbar() {
           </Link>
 
           {/* middle links - hidden on mobile */}
-          <div className="hidden font-black md:flex items-center justify-center gap-4">
+          <div className="hidden font-geist-pixel-square md:flex items-center justify-center gap-4">
             <Link href={"/"} className="text-sm ">
               Home
             </Link>
@@ -64,13 +64,19 @@ function Navbar() {
           {/* theme toggle and more */}
           <div className="flex items-center justify-center gap-2">
             {/* todo: redirect to the github repo :D */}
-            <Link href={"https://github.com/"} className="hidden md:inline-block">
+            <Link
+              href={"https://github.com/"}
+              className="hidden md:inline-block"
+            >
               <Button size={"icon-lg"} variant="outline">
                 <GithubLogoIcon size={32} />
               </Button>
             </Link>
 
-            <Link href={"https://x.com/radiumcoders"} className="hidden md:inline-block">
+            <Link
+              href={"https://x.com/radiumcoders"}
+              className="hidden md:inline-block"
+            >
               <Button size={"icon-lg"} variant="outline">
                 <XLogoIcon size={32} />
               </Button>
@@ -82,7 +88,13 @@ function Navbar() {
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               className="hidden md:flex"
             >
-              {!mounted ? <SunIcon /> : theme === "light" ? <MoonIcon /> : <SunIcon />}
+              {!mounted ? (
+                <SunIcon />
+              ) : theme === "light" ? (
+                <MoonIcon />
+              ) : (
+                <SunIcon />
+              )}
             </Button>
 
             {/* Mobile menu button */}
@@ -118,7 +130,11 @@ function Navbar() {
                 <Image src="/logo-dark.svg" alt="Logo" width={50} height={50} />
               )}
             </Link>
-            <Button size={"icon-lg"} variant="outline" onClick={closeMobileMenu}>
+            <Button
+              size={"icon-lg"}
+              variant="outline"
+              onClick={closeMobileMenu}
+            >
               <X size={32} />
             </Button>
           </div>
@@ -162,7 +178,10 @@ function Navbar() {
                 </Button>
               </Link>
 
-              <Link href={"https://x.com/radiumcoders"} onClick={closeMobileMenu}>
+              <Link
+                href={"https://x.com/radiumcoders"}
+                onClick={closeMobileMenu}
+              >
                 <Button size={"icon-lg"} variant="outline">
                   <XLogoIcon size={32} />
                 </Button>
@@ -173,7 +192,13 @@ function Navbar() {
                 variant="outline"
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               >
-                {!mounted ? <SunIcon /> : theme === "light" ? <MoonIcon /> : <SunIcon />}
+                {!mounted ? (
+                  <SunIcon />
+                ) : theme === "light" ? (
+                  <MoonIcon />
+                ) : (
+                  <SunIcon />
+                )}
               </Button>
             </div>
           </div>
