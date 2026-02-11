@@ -19,7 +19,7 @@ export default function Page() {
         <div className="pt-8 sm:pt-12 md:pt-16 pb-4 sm:pb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-geist-pixel-square">
           <h1>
             The <span className="text-emerald-500">Open Source Collection</span>{" "}
-            You've Been Looking For :D
+            You've Been Looking For.
           </h1>
         </div>
 

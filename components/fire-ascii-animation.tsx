@@ -93,7 +93,7 @@ export default function FireASCIIAnimation({
   if (isLoading) {
     return (
       <div className={`relative font-mono whitespace-pre overflow-hidden ${className}`}>
-        <div className="animate-pulse text-orange-500/50 text-center">Loading fire animation...</div>
+        <div className="animate-pulse text-emerald-500/50 text-center">Loading fire animation...</div>
       </div>
     );
   }
@@ -109,7 +109,7 @@ export default function FireASCIIAnimation({
   return (
     <div className={`absolute inset-0 font-mono whitespace-pre overflow-hidden ${className}`}>
       {showFrameCount && (
-        <div className="text-orange-500/70 mb-2 text-center">
+        <div className="text-emerald-500/70 mb-2 text-center">
           Frame: {currentFrame + 1}/{frames.length}
         </div>
       )}
