@@ -83,6 +83,26 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Custom easing functions */
+  --expo-in: linear(
+    0 0%, 0.0085 31.26%, 0.0167 40.94%,
+    0.0289 48.86%, 0.0471 55.92%,
+    0.0717 61.99%, 0.1038 67.32%,
+    0.1443 72.07%, 0.1989 76.7%,
+    0.2659 80.89%, 0.3465 84.71%,
+    0.4419 88.22%, 0.554 91.48%,
+    0.6835 94.51%, 0.8316 97.34%, 1 100%
+  );
+  --expo-out: linear(
+    0 0%, 0.1684 2.66%, 0.3165 5.49%,
+    0.446 8.52%, 0.5581 11.78%,
+    0.6535 15.29%, 0.7341 19.11%,
+    0.8011 23.3%, 0.8557 27.93%,
+    0.8962 32.68%, 0.9283 38.01%,
+    0.9529 44.08%, 0.9711 51.14%,
+    0.9833 59.06%, 0.9915 68.74%, 1 100%
+  );
 }
 
 .dark {
@@ -175,6 +195,38 @@
 
   .animate-pulse-slow-delay {
     animation: pulse-slow 4s ease-in-out 2s infinite;
+  }
+}
+
+/* View Transitions API - Theme Toggle Animation */
+::view-transition-group(root) {
+  animation-timing-function: var(--expo-out);
+}
+
+::view-transition-new(root) {
+  mask: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmQ4amcwM3BjemtmNTB4cmR6NTd1dHNmeTV1ZjhubHY1ZTJzNXJlNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/ZE5DmCqNMr3yDXq1Zu/giphy.gif') center / 0 no-repeat;
+  animation: theme-scale 1s;
+  animation-fill-mode: both;
+}
+
+::view-transition-old(root),
+.dark::view-transition-old(root) {
+  animation: theme-scale 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes theme-scale {
+  0% {
+    mask-size: 0;
+  }
+  5% {
+    mask-size: 50vmax;
+  }
+  95% {
+    mask-size: 50vmax;
+  }
+  100% {
+    mask-size: 2000vmax;
   }
 }
 

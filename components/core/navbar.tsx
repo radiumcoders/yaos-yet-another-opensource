@@ -11,15 +11,18 @@ import {
   X,
 } from "@phosphor-icons/react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function Navbar() {
   const { theme, setTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     setMounted(true);
+    // Initialize audio element
+    audioRef.current = new Audio('/theme-toggle-sound.mp3');
   }, []);
 
   const toggleMobileMenu = () => {
@@ -28,6 +31,39 @@ function Navbar() {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    
+    // Play audio
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0; // Reset to start
+      const playPromise = audioRef.current.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.catch(err => console.log('Audio play failed:', err));
+      }
+      
+      // Stop audio after 1 second (matching animation duration)
+      setTimeout(() => {
+        if (audioRef.current) {
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+        }
+      }, 1000);
+    }
+    
+    // @ts-ignore
+    if (!document.startViewTransition) {
+      setTheme(newTheme);
+      return;
+    }
+    
+    // @ts-ignore
+    document.startViewTransition(() => {
+      setTheme(newTheme);
+    });
   };
 
   return (
@@ -85,7 +121,7 @@ function Navbar() {
             <Button
               size={"icon-lg"}
               variant="outline"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              onClick={toggleTheme}
               className="hidden md:flex"
             >
               {!mounted ? (
@@ -190,7 +226,7 @@ function Navbar() {
               <Button
                 size={"icon-lg"}
                 variant="outline"
-                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                onClick={toggleTheme}
               >
                 {!mounted ? (
                   <SunIcon />
