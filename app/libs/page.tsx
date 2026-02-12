@@ -5,6 +5,7 @@ function page() {
   return (
     <Container>
       <Navbar />
+      <div className="py-4 px-2">hello</div>
     </Container>
   );
 }

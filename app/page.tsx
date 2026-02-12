@@ -8,24 +8,24 @@ import Link from "next/link";
 export default function Page() {
   return (
     <>
-      {/* Light Rays Background - Dark mode only
+      {/* Light Rays Background - Dark mode only */}
       <div className="fixed inset-0 w-screen h-screen pointer-events-none z-0 hidden dark:block">
         <LightRays
           raysOrigin="top-center"
           raysColor="#ffffff"
           raysSpeed={1}
           lightSpread={0.5}
-          rayLength={3}
-          followMouse={true}
+          rayLength={1}
+          followMouse={false}
           mouseInfluence={0.1}
-          noiseAmount={0}
-          distortion={0}
+          noiseAmount={0.5}
+          distortion={0.12}
           className="custom-rays"
           pulsating={false}
-          fadeDistance={1}
+          fadeDistance={3}
           saturation={1}
         />
-      </div> */}
+      </div>
       {/* Fire ASCII Animation Background - Full Screen */}
       <Container className="fixed inset-0 w-screen h-screen pointer-events-none flex items-center justify-end z-0 overflow-hidden">
         <FireASCIIAnimation
@@ -39,17 +39,11 @@ export default function Page() {
           {/* HERO TEXT */}
           <div className="pb-4 sm:pb-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-geist-pixel-square text-center">
             <h1>
-              The <span className="text-emerald-500">Open Source Collection</span>{" "}
+              The{" "}
+              <span className="text-emerald-500">Open Source Collection</span>{" "}
               You've Been Looking For.
             </h1>
           </div>
-
-          {/* Hero Description
-          <p className="pb-6 sm:pb-8 font-geist-pixel-grid text-sm sm:text-base">
-            A handpicked collection of open-source UI libraries, portfolio
-            templates, tools, and resources to accelerate your next project. All
-            free. All open.
-          </p> */}
 
           {/* CTA Buttons */}
           <div className="pb-8 sm:pb-10">

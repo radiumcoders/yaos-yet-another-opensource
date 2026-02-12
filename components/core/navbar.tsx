@@ -67,8 +67,8 @@ function Navbar() {
   };
 
   return (
-    <nav className="z-50 bg-background">
-      <div className="w-full h-fit border-b border-border font-geist-pixel-circle">
+    <nav className="z-50 bg-background/50 backdrop-blur-sm border-2 border-border shadow-xs w-full rounded-xl my-2 ">
+      <div className="w-full h-fit font-geist-pixel-circle">
         <div className="flex items-center justify-between gap-4 h-16 w-full max-w-7xl mx-auto px-4">
           {/* logo */}
           <Link href="/">
