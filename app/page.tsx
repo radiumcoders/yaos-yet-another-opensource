@@ -1,6 +1,6 @@
 import Container from "@/components/core/container";
 import Navbar from "@/components/core/navbar";
-import FireASCIIAnimation from "@/components/fire-ascii-animation";
+
 import LightRays from "@/components/LightRays";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -26,13 +26,6 @@ export default function Page() {
           saturation={1}
         />
       </div>
-      {/* Fire ASCII Animation Background - Full Screen */}
-      <Container className="fixed inset-0 w-screen h-screen pointer-events-none flex items-center justify-end z-0 overflow-hidden">
-        <FireASCIIAnimation
-          fps={30}
-          className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-none text-emerald-500/60"
-        />
-      </Container>
       <Container className="relative h-screen z-10 max-w-7xl mx-auto px-4 border-x border-border w-full flex flex-col">
         <Navbar />
         <div className="flex-1 flex flex-col items-center justify-center">

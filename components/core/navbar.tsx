@@ -22,7 +22,9 @@ function Navbar() {
   useEffect(() => {
     setMounted(true);
     // Initialize audio element with MyInstants hosted MP3
-    audioRef.current = new Audio('https://www.myinstants.com/media/sounds/rickroll-but-short.mp3');
+    audioRef.current = new Audio(
+      "https://www.myinstants.com/media/sounds/rickroll-but-short.mp3",
+    );
   }, []);
 
   const toggleMobileMenu = () => {
@@ -35,16 +37,16 @@ function Navbar() {
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
-    
+
     // Play audio
     if (audioRef.current) {
       audioRef.current.currentTime = 0; // Reset to start
       const playPromise = audioRef.current.play();
-      
+
       if (playPromise !== undefined) {
-        playPromise.catch(err => console.log('Audio play failed:', err));
+        playPromise.catch((err) => console.log("Audio play failed:", err));
       }
-      
+
       // Stop audio after 1 second (matching animation duration)
       setTimeout(() => {
         if (audioRef.current) {
@@ -53,13 +55,13 @@ function Navbar() {
         }
       }, 1000);
     }
-    
+
     // @ts-ignore
     if (!document.startViewTransition) {
       setTheme(newTheme);
       return;
     }
-    
+
     // @ts-ignore
     document.startViewTransition(() => {
       setTheme(newTheme);
@@ -67,9 +69,9 @@ function Navbar() {
   };
 
   return (
-    <nav className="z-50 bg-background/50 backdrop-blur-sm border-2 border-border shadow-xs w-full rounded-xl my-2 ">
+    <nav className="z-50 bg-background/50 backdrop-blur-sm ring ring-ring/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full rounded-xl my-2 ">
       <div className="w-full h-fit font-geist-pixel-circle">
-        <div className="flex items-center justify-between gap-4 h-16 w-full max-w-7xl mx-auto px-4">
+        <div className="flex items-center justify-between gap-4 py-1 w-full max-w-7xl mx-auto px-4">
           {/* logo */}
           <Link href="/">
             {!mounted ? (
