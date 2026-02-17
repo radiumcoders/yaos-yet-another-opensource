@@ -20,9 +20,5 @@
     "ui": "@/components/ui",
     "lib": "@/lib",
     "hooks": "@/hooks"
-  },
-  "registries": {
-    "@react-bits": "https://reactbits.dev/r/{name}.json",
-    "@aceternity": "https://ui.aceternity.com/registry/{name}.json"
   }
 }
