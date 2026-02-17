@@ -1,19 +1,47 @@
 "use client";
-import Image from "next/image";
-import { useTheme } from "next-themes";
-import { Button } from "../ui/button";
 import {
   GithubLogoIcon,
+  ListIcon,
   MoonIcon,
   SunIcon,
+  XIcon,
   XLogoIcon,
 } from "@phosphor-icons/react";
+import { AnimatePresence, motion } from "motion/react";
+import { useTheme } from "next-themes";
+import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Button } from "../ui/button";
+
+enum SocialLinks {
+  Github = "https://github.com/radiumcoders/yaos-yet-another-opensource",
+  X = "https://x.com/radiumcoders",
+}
+
+const links = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Libraries",
+    href: "/libs",
+  },
+  {
+    label: "Tools",
+    href: "/tools",
+  },
+  {
+    label: "Other",
+    href: "/other",
+  },
+];
 
 function Navbar() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -58,64 +86,135 @@ function Navbar() {
   };
 
   return (
-    <nav className="z-50 bg-background/50 backdrop-blur-sm ring ring-ring/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full rounded-xl my-2 ">
-      <div className="w-full h-fit font-geist-pixel-circle">
-        <div className="flex items-center justify-between gap-4 py-1 w-full max-w-7xl mx-auto px-4">
-          {/* logo */}
-          <Link href="/">
-            {!mounted ? (
-              <Image src="/logo.svg" alt="Logo" width={50} height={50} />
-            ) : theme === "light" ? (
-              <Image src="/logo.svg" alt="Logo" width={50} height={50} />
-            ) : (
-              <Image src="/logo-dark.svg" alt="Logo" width={50} height={50} />
-            )}
-          </Link>
-
-          {/* middle links */}
-          <div className="font-geist-pixel-square flex items-center justify-center gap-4">
-            <Link href={"/"} className="text-sm ">
-              Home
-            </Link>
-            <Link href={"/libs"} className="text-sm">
-              Libraries
-            </Link>
-            <Link href={"/tools"} className="text-sm">
-              Tools
-            </Link>
-            <Link href={"/other"} className="text-sm">
-              Other
-            </Link>
-          </div>
-
-          {/* theme toggle and more */}
-          <div className="flex items-center justify-center gap-2">
-            {/* todo: redirect to the github repo :D */}
-            <Link href={"https://github.com/radiumcoders/YAOS-v2"}>
-              <Button size={"icon-lg"} variant="outline">
-                <GithubLogoIcon size={32} />
-              </Button>
-            </Link>
-
-            <Link href={"https://x.com/radiumcoders"}>
-              <Button size={"icon-lg"} variant="outline">
-                <XLogoIcon size={32} />
-              </Button>
-            </Link>
-
-            <Button size={"icon-lg"} variant="outline" onClick={toggleTheme}>
+    <>
+      <nav className="z-50 bg-background/50 backdrop-blur-sm ring ring-ring/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full rounded-xl my-2 ">
+        <div className="w-full h-fit font-geist-pixel-circle">
+          <div className="flex items-center justify-between gap-4 py-1 w-full max-w-7xl mx-auto px-4">
+            {/* logo */}
+            <Link href="/">
               {!mounted ? (
-                <SunIcon />
+                <Image src="/logo.svg" alt="Logo" width={50} height={50} />
               ) : theme === "light" ? (
-                <MoonIcon />
+                <Image src="/logo.svg" alt="Logo" width={50} height={50} />
               ) : (
-                <SunIcon />
+                <Image src="/logo-dark.svg" alt="Logo" width={50} height={50} />
               )}
+            </Link>
+
+            {/* middle links - hidden on mobile */}
+            <div className="font-geist-pixel-square hidden md:flex items-center justify-center gap-4">
+              {links.map((link) => {
+                return (
+                  <Link key={link.href} href={link.href} className="text-sm ">
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* theme toggle and more - hidden on mobile */}
+            <div className="hidden md:flex items-center justify-center gap-2">
+              <Link href={SocialLinks.Github}>
+                <Button size={"icon-lg"} variant="outline">
+                  <GithubLogoIcon size={32} />
+                </Button>
+              </Link>
+
+              <Link href={SocialLinks.X}>
+                <Button size={"icon-lg"} variant="outline">
+                  <XLogoIcon size={32} />
+                </Button>
+              </Link>
+
+              <Button size={"icon-lg"} variant="outline" onClick={toggleTheme}>
+                {!mounted ? (
+                  <SunIcon />
+                ) : theme === "light" ? (
+                  <MoonIcon />
+                ) : (
+                  <SunIcon />
+                )}
+              </Button>
+            </div>
+
+            {/* hamburger menu - visible only on mobile */}
+            <Button
+              size={"icon-lg"}
+              variant="outline"
+              className="md:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <ListIcon size={32} />
             </Button>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              duration: 0.3,
+              ease: "easeInOut",
+            }}
+            className="fixed inset-0 z-9999 bg-background flex flex-col items-center justify-center gap-4 md:hidden"
+          >
+            {/* Close button */}
+            <Button
+              size={"icon-lg"}
+              variant="outline"
+              className="absolute top-4 right-4"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <XIcon size={32} />
+            </Button>
+
+            {/* Links */}
+            {links.map((link) => {
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="font-geist-pixel-circle text-3xl"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+
+            {/* Social links and theme toggle */}
+            <div className="flex items-center justify-center gap-4">
+              <Link href={SocialLinks.Github}>
+                <Button size={"icon-lg"} variant="outline">
+                  <GithubLogoIcon size={32} />
+                </Button>
+              </Link>
+
+              <Link href={SocialLinks.X}>
+                <Button size={"icon-lg"} variant="outline">
+                  <XLogoIcon size={32} />
+                </Button>
+              </Link>
+
+              <Button size={"icon-lg"} variant="outline" onClick={toggleTheme}>
+                {!mounted ? (
+                  <SunIcon />
+                ) : theme === "light" ? (
+                  <MoonIcon />
+                ) : (
+                  <SunIcon />
+                )}
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 

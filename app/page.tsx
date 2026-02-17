@@ -30,7 +30,7 @@ export default function Page() {
         <Navbar />
         <div className="flex-1 flex flex-col justify-start pt-6">
           {/* HERO TEXT */}
-          <div className="pb-4 sm:pb-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bricolage-grotesque">
+          <div className="pb-4 sm:pb-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bridge">
             <h1>The Open Source Collection You've Been Looking For.</h1>
           </div>
 
