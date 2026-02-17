@@ -1,15 +1,23 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/core/navbar";
-import { ThemeProvider } from "next-themes";
 import {
-  GeistPixelSquare,
   GeistPixelCircle,
+  GeistPixelSquare,
   GeistPixelTriangle,
 } from "geist/font/pixel";
+import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
+import {
+  Geist,
+  Geist_Mono,
+  Inter,
+  Bricolage_Grotesque,
+} from "next/font/google";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const bricolageGrotesque = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-bridge",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +47,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${GeistPixelCircle.variable} ${GeistPixelSquare.variable} ${GeistPixelTriangle.variable}  antialiased min-h-dvh flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} ${bricolageGrotesque.variable} ${GeistPixelCircle.variable} ${GeistPixelSquare.variable} ${GeistPixelTriangle.variable}  antialiased min-h-dvh flex flex-col`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}

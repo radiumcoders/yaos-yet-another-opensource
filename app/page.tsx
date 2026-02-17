@@ -26,21 +26,17 @@ export default function Page() {
           saturation={1}
         />
       </div>
-      <Container className="relative h-screen z-10 max-w-7xl mx-auto px-4 border-x border-border w-full flex flex-col">
+      <Container className="relative h-screen z-10 max-w-7xl mx-auto px-4 w-full flex flex-col ">
         <Navbar />
-        <div className="flex-1 flex flex-col items-center justify-center">
+        <div className="flex-1 flex flex-col justify-start pt-6">
           {/* HERO TEXT */}
-          <div className="pb-4 sm:pb-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-geist-pixel-square text-center">
-            <h1>
-              The{" "}
-              <span className="text-emerald-500">Open Source Collection</span>{" "}
-              You've Been Looking For.
-            </h1>
+          <div className="pb-4 sm:pb-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bricolage-grotesque">
+            <h1>The Open Source Collection You've Been Looking For.</h1>
           </div>
 
           {/* CTA Buttons */}
           <div className="pb-8 sm:pb-10">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            <div className="flex flex-col sm:flex-row items-start justify-start gap-3 sm:gap-4">
               <Link href="/libs">
                 <Button
                   size="lg"
