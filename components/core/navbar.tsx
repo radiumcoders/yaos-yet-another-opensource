@@ -7,7 +7,7 @@ import {
   XIcon,
   XLogoIcon,
 } from "@phosphor-icons/react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, LazyMotion, m, domAnimation } from "motion/react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -151,69 +151,71 @@ function Navbar() {
       </nav>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{
-              duration: 0.3,
-              ease: "easeInOut",
-            }}
-            className="fixed inset-0 z-9999 bg-background flex flex-col items-center justify-center gap-4 md:hidden"
-          >
-            {/* Close button */}
-            <Button
-              size={"icon-lg"}
-              variant="outline"
-              className="absolute top-4 right-4"
-              onClick={() => setMobileMenuOpen(false)}
+      <LazyMotion features={domAnimation}>
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <m.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.3,
+                ease: "easeInOut",
+              }}
+              className="fixed inset-0 z-9999 bg-background flex flex-col items-center justify-center gap-4 md:hidden"
             >
-              <XIcon size={32} />
-            </Button>
-
-            {/* Links */}
-            {links.map((link) => {
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="font-geist-pixel-circle text-3xl"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-
-            {/* Social links and theme toggle */}
-            <div className="flex items-center justify-center gap-4">
-              <Link href={SocialLinks.Github}>
-                <Button size={"icon-lg"} variant="outline">
-                  <GithubLogoIcon size={32} />
-                </Button>
-              </Link>
-
-              <Link href={SocialLinks.X}>
-                <Button size={"icon-lg"} variant="outline">
-                  <XLogoIcon size={32} />
-                </Button>
-              </Link>
-
-              <Button size={"icon-lg"} variant="outline" onClick={toggleTheme}>
-                {!mounted ? (
-                  <SunIcon />
-                ) : theme === "light" ? (
-                  <MoonIcon />
-                ) : (
-                  <SunIcon />
-                )}
+              {/* Close button */}
+              <Button
+                size={"icon-lg"}
+                variant="outline"
+                className="absolute top-4 right-4"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <XIcon size={32} />
               </Button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+              {/* Links */}
+              {links.map((link) => {
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="font-geist-pixel-circle text-3xl"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+
+              {/* Social links and theme toggle */}
+              <div className="flex items-center justify-center gap-4">
+                <Link href={SocialLinks.Github}>
+                  <Button size={"icon-lg"} variant="outline">
+                    <GithubLogoIcon size={32} />
+                  </Button>
+                </Link>
+
+                <Link href={SocialLinks.X}>
+                  <Button size={"icon-lg"} variant="outline">
+                    <XLogoIcon size={32} />
+                  </Button>
+                </Link>
+
+                <Button size={"icon-lg"} variant="outline" onClick={toggleTheme}>
+                  {!mounted ? (
+                    <SunIcon />
+                  ) : theme === "light" ? (
+                    <MoonIcon />
+                  ) : (
+                    <SunIcon />
+                  )}
+                </Button>
+              </div>
+            </m.div>
+          )}
+        </AnimatePresence>
+      </LazyMotion>
     </>
   );
 }
