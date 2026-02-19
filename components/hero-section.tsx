@@ -30,7 +30,7 @@ export default function HeroSection() {
             <Button
               size="lg"
               variant={"default"}
-              className="w-full sm:w-auto px-2 py-6 text-md font-geist-pixel-square relative z-10"
+              className="w-full sm:w-auto px-2 py-6 text-md font-geist-pixel-square relative z-10 "
             >
               Explore Collection
             </Button>
@@ -42,7 +42,7 @@ export default function HeroSection() {
                 <Button
                   size="lg"
                   variant={"outline"}
-                  className="w-fit sm:w-auto px-2 py-6 text-md font-geist-pixel-square relative z-10"
+                  className="w-fit sm:w-auto px-2 py-6 text-md font-geist-pixel-square relative z-10 bg-background"
                 />
               }
             >

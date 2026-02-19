@@ -1,5 +1,4 @@
 import Container from "@/components/core/container";
-import Navbar from "@/components/core/navbar";
 import HeroSection from "@/components/hero-section";
 import { getTopRatedTools } from "@/server/ratings";
 import StarRating from "@/components/ui/star-rating";
@@ -25,7 +24,6 @@ export default async function Page() {
   return (
     <>
       <Container className="relative min-h-screen z-10 max-w-7xl mx-auto px-4 w-full flex flex-col">
-        <Navbar />
         <HeroSection />
 
         {/* Top Rated Tools Section */}

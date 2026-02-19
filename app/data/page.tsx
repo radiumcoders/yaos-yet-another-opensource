@@ -1,5 +1,4 @@
 import Container from "@/components/core/container";
-import Navbar from "@/components/core/navbar";
 import { db } from "@/db";
 import { dataTable } from "@/db/schema";
 import { Button } from "@/components/ui/button";
@@ -25,7 +24,6 @@ export default async function DataPage() {
 
   return (
     <Container className="relative min-h-screen z-10 max-w-7xl mx-auto px-4 w-full flex flex-col">
-      <Navbar />
       
       <div className="flex-1 flex flex-col py-6">
         {/* Page Header */}

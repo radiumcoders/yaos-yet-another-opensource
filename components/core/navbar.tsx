@@ -83,7 +83,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="z-50 bg-background/50 backdrop-blur-sm ring ring-ring/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full rounded-xl my-2 ">
+      <nav className="z-50 bg-background/50 dark:bg-background/90 backdrop-blur-sm ring ring-ring/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full rounded-xl my-2 border border-white/20 dark:border-white/10">
         <div className="w-full h-fit font-geist-pixel-circle">
           <div className="flex items-center justify-between gap-4 py-1 w-full max-w-7xl mx-auto px-4">
             {/* logo */}

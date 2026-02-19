@@ -13,6 +13,8 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import Navbar from "@/components/core/navbar";
+import Container from "@/components/core/container";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const bricolageGrotesque = Bricolage_Grotesque({
@@ -52,7 +54,38 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${bricolageGrotesque.variable} ${GeistPixelCircle.variable} ${GeistPixelSquare.variable} ${GeistPixelTriangle.variable}  antialiased min-h-dvh flex flex-col`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <div className="min-h-screen w-full bg-white dark:bg-zinc-950 relative overflow-hidden">
+            {/* Soft Blue Radial Background - Light Mode */}
+            <div
+              className="fixed inset-0 z-0 dark:hidden"
+              style={{
+                background: "#ffffff",
+                backgroundImage: `
+                  radial-gradient(circle at top center, rgba(59, 130, 246, 0.5), transparent 70%)
+                `,
+              }}
+            />
+            {/* Soft Blue Radial Background - Dark Mode */}
+            <div
+              className="fixed inset-0 z-0 dark:block hidden"
+              style={{
+                background: "#09090b",
+                backgroundImage: `
+                  radial-gradient(circle at top center, rgba(59, 130, 246, 0.4), transparent 70%)
+                `,
+              }}
+            />
+            
+            {/* Fixed Navbar */}
+            <Container className="fixed top-0 left-0 right-0 z-50 px-4 h-fit">
+              <Navbar />
+            </Container>
+            
+            {/* Content with top padding to account for fixed navbar */}
+            <div className="relative z-10 pt-20">
+              {children}
+            </div>
+          </div>
         </ThemeProvider>
       </body>
     </html>
