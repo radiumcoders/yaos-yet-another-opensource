@@ -54,7 +54,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${bricolageGrotesque.variable} ${GeistPixelCircle.variable} ${GeistPixelSquare.variable} ${GeistPixelTriangle.variable}  antialiased min-h-dvh flex flex-col`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="min-h-screen w-full bg-white dark:bg-zinc-950 relative overflow-hidden">
+          <div className="min-h-screen w-full bg-white dark:bg-zinc-950 relative">
             {/* Soft Blue Radial Background - Light Mode */}
             <div
               className="fixed inset-0 z-0 dark:hidden"
@@ -82,7 +82,7 @@ export default function RootLayout({
             </Container>
             
             {/* Content with top padding to account for fixed navbar */}
-            <div className="relative z-10 pt-20">
+            <div className="relative z-10 pt-20 pb-8">
               {children}
             </div>
           </div>
