@@ -2,7 +2,7 @@
 
 > A curated showcase of the best open source projects, UI libraries, and developer tools for your next amazing project.
 
-<!-- > ![Preview](public/image.png) -->
+> ![Preview](public/image.png)
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen.svg)](https://yaos.vercel.app)
 
