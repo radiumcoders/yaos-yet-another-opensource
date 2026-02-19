@@ -14,24 +14,6 @@ YAOS is a modern, beautifully designed web platform that brings together the mos
 
 **Live at:** [yaos.vercel.app](https://yaos.vercel.app)
 
-## Categories
-
-### UI Libraries
-
-Comprehensive collection of component libraries and design systems:
-
-### Portfolio Templates
-
-Professionally designed portfolio templates:
-
-### Developer Tools
-
-Essential tools for modern development:
-
-### Other Projects
-
-Unique and creative open source projects:
-
 ## Built With
 
 - **Framework:** Next.js / React
