@@ -9,7 +9,8 @@ export async function insertData(formData: FormData) {
     const description = formData.get("description") as string;
     const github_url = formData.get("github_url") as string;
     const live_url = formData.get("live_url") as string;
-    const tags = formData.get("tags") as string;
+    const logo_url = formData.get("logo_url") as string;
+    const tagsJson = formData.get("tags") as string;
 
     // Validate required fields
     if (!title || !description || !github_url || !live_url) {
@@ -19,13 +20,13 @@ export async function insertData(formData: FormData) {
       };
     }
 
-    // Parse tags from comma-separated string to array
-    const tagsArray = tags
-      ? tags
-          .split(",")
-          .map((tag) => tag.trim())
-          .filter(Boolean)
-      : [];
+    // Parse tags from JSON array
+    let tagsArray: string[] = [];
+    try {
+      tagsArray = tagsJson ? JSON.parse(tagsJson) : [];
+    } catch {
+      tagsArray = [];
+    }
 
     // Insert into database
     const result = await db
@@ -35,6 +36,7 @@ export async function insertData(formData: FormData) {
         description,
         github_url,
         live_url,
+        logo_url: logo_url || null,
         tags: tagsArray,
       })
       .returning();

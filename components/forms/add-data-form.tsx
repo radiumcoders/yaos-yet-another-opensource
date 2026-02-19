@@ -7,6 +7,20 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import {
+  Tags,
+  TagsTrigger,
+  TagsValue,
+  TagsContent,
+  TagsInput,
+  TagsList,
+  TagsEmpty,
+  TagsGroup,
+  TagsItem,
+} from "@/components/kibo-ui/tags";
+import { tags } from "@/db/schema";
+import { CheckIcon } from "lucide-react";
+import ProjectLogo from "@/components/ui/project-logo";
 
 interface AddDataFormProps {
   onSuccess?: () => void;
@@ -18,6 +32,9 @@ export default function AddDataForm({ onSuccess }: AddDataFormProps) {
     type: "success" | "error";
     message: string;
   } | null>(null);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [open, setOpen] = useState(false);
+  const [logoPreview, setLogoPreview] = useState<string>("");
 
   const form = useForm({
     defaultValues: {
@@ -25,7 +42,8 @@ export default function AddDataForm({ onSuccess }: AddDataFormProps) {
       description: "",
       github_url: "",
       live_url: "",
-      tags: "",
+      logo_url: "",
+      tags: [] as string[],
     },
     onSubmit: async ({ value, formApi }) => {
       setIsSubmitting(true);
@@ -37,7 +55,8 @@ export default function AddDataForm({ onSuccess }: AddDataFormProps) {
         formData.append("description", value.description);
         formData.append("github_url", value.github_url);
         formData.append("live_url", value.live_url);
-        formData.append("tags", value.tags);
+        formData.append("logo_url", value.logo_url);
+        formData.append("tags", JSON.stringify(value.tags));
 
         const result = await insertData(formData);
 
@@ -47,6 +66,8 @@ export default function AddDataForm({ onSuccess }: AddDataFormProps) {
             message: "Data added successfully!",
           });
           formApi.reset();
+          setSelectedTags([]);
+          setLogoPreview("");
           // Call onSuccess callback if provided
           if (onSuccess) {
             setTimeout(() => {
@@ -190,6 +211,43 @@ export default function AddDataForm({ onSuccess }: AddDataFormProps) {
         )}
       </form.Field>
 
+      {/* Logo URL Field */}
+      <form.Field name="logo_url">
+        {(field) => (
+          <div className="space-y-2">
+            <Label htmlFor={field.name}>Logo URL (Optional)</Label>
+            <Input
+              id={field.name}
+              name={field.name}
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChange={(e) => {
+                field.handleChange(e.target.value);
+                setLogoPreview(e.target.value);
+              }}
+              placeholder="https://example.com/logo.png"
+              type="url"
+            />
+            <p className="text-xs text-muted-foreground">
+              Enter a URL to your project logo (PNG, JPG, SVG, ICO, etc.)
+            </p>
+            
+            {/* Logo Preview */}
+            {logoPreview && (
+              <div className="flex items-center gap-3 p-3 bg-muted rounded-lg">
+                <ProjectLogo
+                  src={logoPreview}
+                  alt="Logo preview"
+                  size="md"
+                  fallbackText={field.state.value}
+                />
+                <span className="text-sm text-muted-foreground">Preview</span>
+              </div>
+            )}
+          </div>
+        )}
+      </form.Field>
+
       {/* Live URL Field */}
       <form.Field
         name="live_url"
@@ -232,17 +290,51 @@ export default function AddDataForm({ onSuccess }: AddDataFormProps) {
       <form.Field name="tags">
         {(field) => (
           <div className="space-y-2">
-            <Label htmlFor={field.name}>Tags</Label>
-            <Input
-              id={field.name}
-              name={field.name}
-              value={field.state.value}
-              onBlur={field.handleBlur}
-              onChange={(e) => field.handleChange(e.target.value)}
-              placeholder="shadcn, react, ui (comma-separated)"
-            />
+            <Label>Tags</Label>
+            <Tags open={open} onOpenChange={setOpen}>
+              <TagsTrigger>
+                {selectedTags.length > 0 ? (
+                  selectedTags.map((tag) => (
+                    <TagsValue
+                      key={tag}
+                      onRemove={() => {
+                        const newTags = selectedTags.filter((t) => t !== tag);
+                        setSelectedTags(newTags);
+                        field.handleChange(newTags);
+                      }}
+                    >
+                      {tag}
+                    </TagsValue>
+                  ))
+                ) : null}
+              </TagsTrigger>
+              <TagsContent>
+                <TagsInput placeholder="Search tags..." />
+                <TagsList>
+                  <TagsEmpty>No tags found.</TagsEmpty>
+                  <TagsGroup>
+                    {tags.map((tag) => (
+                      <TagsItem
+                        key={tag}
+                        value={tag}
+                        onSelect={() => {
+                          const newTags = selectedTags.includes(tag)
+                            ? selectedTags.filter((t) => t !== tag)
+                            : [...selectedTags, tag];
+                          setSelectedTags(newTags);
+                          field.handleChange(newTags);
+                        }}
+                      >
+                        <span>{tag}</span>
+                        {selectedTags.includes(tag) && <CheckIcon size={16} />}
+                      </TagsItem>
+                    ))}
+                  </TagsGroup>
+                </TagsList>
+              </TagsContent>
+            </Tags>
             <p className="text-xs text-muted-foreground">
-              Separate tags with commas
+              Select tags from the list
             </p>
           </div>
         )}

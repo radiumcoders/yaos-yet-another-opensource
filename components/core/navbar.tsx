@@ -29,16 +29,8 @@ const links = [
     href: "/libs",
   },
   {
-    label: "Tools",
-    href: "/tools",
-  },
-  {
-    label: "Data",
+    label: "RawData",
     href: "/data",
-  },
-  {
-    label: "Other",
-    href: "/other",
   },
 ];
 
