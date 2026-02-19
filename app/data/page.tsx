@@ -16,6 +16,9 @@ import Link from "next/link";
 import RatingWidget from "@/components/rating-widget";
 import ProjectLogo from "@/components/ui/project-logo";
 
+// Revalidate every 30 seconds to show fresh ratings
+export const revalidate = 30;
+
 export default async function DataPage() {
   // Fetch all data from database
   const allData = await db.select().from(dataTable);

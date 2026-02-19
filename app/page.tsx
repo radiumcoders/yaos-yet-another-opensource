@@ -16,6 +16,9 @@ import {
 import Link from "next/link";
 import { GithubLogoIcon, GlobeIcon } from "@phosphor-icons/react/dist/ssr";
 
+// Revalidate every 30 seconds to show fresh ratings
+export const revalidate = 30;
+
 export default async function Page() {
   const topRatedTools = await getTopRatedTools(6, 1);
 

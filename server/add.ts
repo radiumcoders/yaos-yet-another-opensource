@@ -2,6 +2,7 @@
 
 import { db } from "@/db";
 import { dataTable } from "@/db/schema";
+import { revalidatePath } from "next/cache";
 
 export async function insertData(formData: FormData) {
   try {
@@ -42,6 +43,10 @@ export async function insertData(formData: FormData) {
       .returning();
 
     console.log("Data inserted successfully:", result);
+
+    // Revalidate pages to show new data immediately
+    revalidatePath("/data");
+    revalidatePath("/");
 
     return {
       success: true,

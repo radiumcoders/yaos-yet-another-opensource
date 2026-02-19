@@ -75,16 +75,21 @@ export default function RatingWidget({
   if (isLoading) {
     return (
       <div className="flex items-center gap-2">
-        <div className="animate-pulse flex gap-0.5">
+        <div className="animate-pulse flex items-center gap-0.5">
           {Array.from({ length: 5 }).map((_, i) => (
             <div
               key={i}
-              className="w-4 h-4 bg-muted rounded"
+              className="bg-muted rounded"
               style={{ width: size, height: size }}
             />
           ))}
         </div>
-        <span className="text-sm text-muted-foreground">Loading...</span>
+        <div className="flex items-center gap-1">
+          <span className="text-sm font-medium text-muted-foreground/60 animate-pulse">0.0</span>
+          {showCount && (
+            <span className="text-xs text-muted-foreground/60 animate-pulse">(0 ratings)</span>
+          )}
+        </div>
       </div>
     );
   }

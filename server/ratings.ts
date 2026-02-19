@@ -5,6 +5,7 @@ import { dataTable, ratingsTable } from "@/db/schema";
 import { getClientIP, hashIP } from "@/lib/ip-utils";
 import { isValidRating, calculateAverage } from "@/lib/rating-utils";
 import { eq, and, desc, sql } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 /**
  * Submit a rating for a tool
@@ -67,6 +68,10 @@ export async function submitRating(toolId: string, rating: number) {
         total_ratings: ratings.length,
       })
       .where(eq(dataTable.id, toolId));
+
+    // Revalidate the data page to show fresh ratings immediately
+    revalidatePath("/data");
+    revalidatePath("/");
 
     return {
       success: true,
