@@ -1,9 +1,23 @@
+"use client";
+
 import Container from "@/components/core/container";
 import Navbar from "@/components/core/navbar";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import Link from "next/link";
+import AddDataForm from "@/components/forms/add-data-form";
+import { useState } from "react";
 
 export default function Page() {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <Container className="relative h-screen z-10 max-w-7xl mx-auto px-4 w-full flex flex-col ">
@@ -25,15 +39,33 @@ export default function Page() {
                   Explore Collection
                 </Button>
               </Link>
-              <Link href="/tools">
-                <Button
-                  size="lg"
-                  variant={"outline"}
-                  className="w-full bg-background dark:bg-background hover:bg-background/80 sm:w-auto px-2 py-6 text-md font-geist-pixel-square font-medium relative z-10"
+              
+              <Dialog open={open} onOpenChange={setOpen}>
+                <DialogTrigger
+                  render={
+                    <Button
+                      size="lg"
+                      variant={"outline"}
+                      className="w-full sm:w-auto px-2 py-6 text-md font-geist-pixel-square relative z-10"
+                    />
+                  }
                 >
-                  Explore Tools
-                </Button>
-              </Link>
+                  Add New :D
+                </DialogTrigger>
+                <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-bridge">
+                      Add New Item
+                    </DialogTitle>
+                    <DialogDescription>
+                      Fill in the details below to add a new item to the collection.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="py-4">
+                    <AddDataForm onSuccess={() => setOpen(false)} />
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>

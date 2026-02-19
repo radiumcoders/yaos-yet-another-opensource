@@ -13,6 +13,7 @@
     "@neondatabase/serverless": "^1.0.2",
     "@phosphor-icons/react": "^2.1.10",
     "@tabler/icons-react": "^3.36.1",
+    "@tanstack/react-form-nextjs": "^1.28.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",

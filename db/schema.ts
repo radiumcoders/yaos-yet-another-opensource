@@ -9,7 +9,6 @@ export const dataTable = pgTable("data", {
   github_url: text("github_url").notNull(),
   live_url: text("live_url").notNull(),
   tags: text("tags").array().notNull().default([]),
-  raw_github_url: text("raw_github_url"),
 });
 
 // id
