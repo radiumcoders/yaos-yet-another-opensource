@@ -41,7 +41,7 @@ export default function HeroSection() {
               render={
                 <Button
                   size="lg"
-                  variant={"outline"}
+                  variant={"secondary"}
                   className="w-fit sm:w-auto px-2 py-6 text-md font-geist-pixel-square relative z-10 bg-background"
                 />
               }

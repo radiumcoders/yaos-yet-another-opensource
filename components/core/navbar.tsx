@@ -111,18 +111,18 @@ function Navbar() {
             {/* theme toggle and more - hidden on mobile */}
             <div className="hidden md:flex items-center justify-center gap-2">
               <Link href={SocialLinks.Github}>
-                <Button size={"icon-lg"} variant="outline">
+                <Button size={"icon-lg"} variant="ghost">
                   <GithubLogoIcon size={32} />
                 </Button>
               </Link>
 
               <Link href={SocialLinks.X}>
-                <Button size={"icon-lg"} variant="outline">
+                <Button size={"icon-lg"} variant="ghost">
                   <XLogoIcon size={32} />
                 </Button>
               </Link>
 
-              <Button size={"icon-lg"} variant="outline" onClick={toggleTheme}>
+              <Button size={"icon-lg"} variant="ghost" onClick={toggleTheme}>
                 {!mounted ? (
                   <SunIcon />
                 ) : theme === "light" ? (
@@ -163,7 +163,7 @@ function Navbar() {
               {/* Close button */}
               <Button
                 size={"icon-lg"}
-                variant="outline"
+                variant="ghost"
                 className="absolute top-4 right-4"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -187,20 +187,20 @@ function Navbar() {
               {/* Social links and theme toggle */}
               <div className="flex items-center justify-center gap-4">
                 <Link href={SocialLinks.Github}>
-                  <Button size={"icon-lg"} variant="outline">
+                  <Button size={"icon-lg"} variant="ghost">
                     <GithubLogoIcon size={32} />
                   </Button>
                 </Link>
 
                 <Link href={SocialLinks.X}>
-                  <Button size={"icon-lg"} variant="outline">
+                  <Button size={"icon-lg"} variant="ghost">
                     <XLogoIcon size={32} />
                   </Button>
                 </Link>
 
                 <Button
                   size={"icon-lg"}
-                  variant="outline"
+                  variant="ghost"
                   onClick={toggleTheme}
                 >
                   {!mounted ? (
