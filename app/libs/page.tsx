@@ -1,5 +1,7 @@
 "use client";
 
+import Container from "@/components/core/container";
+import Navbar from "@/components/core/navbar";
 import {
   Tags,
   TagsContent,
@@ -54,11 +56,16 @@ const Example = () => {
   };
 
   return (
-    <Tagselect
-      handleRemove={handleRemove}
-      handleSelect={handleSelect}
-      selected={selected}
-    />
+    <Container>
+      <Navbar />
+      <Container className="p-4 h-fit w-fit border border-border rounded-xl">
+        <Tagselect
+          handleRemove={handleRemove}
+          handleSelect={handleSelect}
+          selected={selected}
+        />
+      </Container>
+    </Container>
   );
 };
 

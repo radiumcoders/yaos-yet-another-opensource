@@ -7,7 +7,7 @@ import {
   XIcon,
   XLogoIcon,
 } from "@phosphor-icons/react";
-import { AnimatePresence, LazyMotion, m, domAnimation } from "motion/react";
+import { AnimatePresence, domAnimation, LazyMotion, m } from "motion/react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,6 +31,10 @@ const links = [
   {
     label: "Tools",
     href: "/tools",
+  },
+  {
+    label: "Data",
+    href: "/data",
   },
   {
     label: "Other",
@@ -202,7 +206,11 @@ function Navbar() {
                   </Button>
                 </Link>
 
-                <Button size={"icon-lg"} variant="outline" onClick={toggleTheme}>
+                <Button
+                  size={"icon-lg"}
+                  variant="outline"
+                  onClick={toggleTheme}
+                >
                   {!mounted ? (
                     <SunIcon />
                   ) : theme === "light" ? (
@@ -221,3 +229,4 @@ function Navbar() {
 }
 
 export default Navbar;
+
