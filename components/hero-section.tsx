@@ -25,10 +25,11 @@ export default function HeroSection() {
 
       {/* CTA Buttons */}
       <div className="pb-8 sm:pb-10">
-        <div className="flex flex-col sm:flex-row items-start justify-start gap-3 sm:gap-4">
+        <div className="flex flex-row  items-start justify-start gap-3 sm:gap-4">
           <Link href="/data">
             <Button
               size="lg"
+              variant={"default"}
               className="w-full sm:w-auto px-2 py-6 text-md font-geist-pixel-square relative z-10"
             >
               Explore Collection
@@ -41,7 +42,7 @@ export default function HeroSection() {
                 <Button
                   size="lg"
                   variant={"outline"}
-                  className="w-full sm:w-auto px-2 py-6 text-md font-geist-pixel-square relative z-10"
+                  className="w-fit sm:w-auto px-2 py-6 text-md font-geist-pixel-square relative z-10"
                 />
               }
             >
