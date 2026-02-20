@@ -26,7 +26,7 @@ export default function HeroSection() {
       {/* CTA Buttons */}
       <div className="pb-8 sm:pb-10">
         <div className="flex flex-row  items-start justify-start gap-3 sm:gap-4">
-          <Link href="/data">
+          <Link href="/libs">
             <Button
               size="lg"
               variant={"default"}

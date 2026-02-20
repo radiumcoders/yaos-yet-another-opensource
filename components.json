@@ -12,7 +12,7 @@
   },
   "iconLibrary": "phosphor",
   "rtl": false,
-  "menuColor": "inverted",
+  "menuColor": "default",
   "menuAccent": "bold",
   "aliases": {
     "components": "@/components",

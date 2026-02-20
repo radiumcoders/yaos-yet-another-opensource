@@ -15,6 +15,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import Navbar from "@/components/core/navbar";
 import Container from "@/components/core/container";
+import BackgroundGradient from "@/components/core/background-gradient";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const bricolageGrotesque = Bricolage_Grotesque({
@@ -55,26 +56,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="min-h-screen w-full bg-white dark:bg-zinc-950 relative">
-            {/* Soft Blue Radial Background - Light Mode */}
-            <div
-              className="fixed inset-0 z-0 dark:hidden"
-              style={{
-                background: "#ffffff",
-                backgroundImage: `
-                  radial-gradient(circle at top center, rgba(59, 130, 246, 0.5), transparent 70%)
-                `,
-              }}
-            />
-            {/* Soft Blue Radial Background - Dark Mode */}
-            <div
-              className="fixed inset-0 z-0 dark:block hidden"
-              style={{
-                background: "#09090b",
-                backgroundImage: `
-                  radial-gradient(circle at top center, rgba(59, 130, 246, 0.4), transparent 70%)
-                `,
-              }}
-            />
+            <BackgroundGradient />
             
             {/* Fixed Navbar */}
             <Container className="fixed top-0 left-0 right-0 z-50 px-4 h-fit">

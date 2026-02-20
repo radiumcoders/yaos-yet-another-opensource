@@ -197,6 +197,16 @@
   .animate-pulse-slow-delay {
     animation: pulse-slow 4s ease-in-out 2s infinite;
   }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

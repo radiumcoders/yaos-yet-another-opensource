@@ -78,7 +78,7 @@ export default function StarRating({
       </div>
       
       {showCount && (
-        <div className="flex items-center gap-1 text-sm text-muted-foreground">
+        <div className="flex items-center gap-1 text-sm text-muted-foreground group-hover/card:text-muted-foreground">
           <span className="font-medium">
             {rating > 0 ? rating.toFixed(1) : "0.0"}
           </span>

@@ -309,9 +309,19 @@ export default function AddDataForm({ onSuccess }: AddDataFormProps) {
                 ) : null}
               </TagsTrigger>
               <TagsContent>
-                <TagsInput placeholder="Search tags..." />
+                <TagsInput placeholder="Search or create tags..." />
                 <TagsList>
-                  <TagsEmpty>No tags found.</TagsEmpty>
+                  <TagsEmpty
+                    onCreateTag={(newTag) => {
+                      if (!selectedTags.includes(newTag)) {
+                        const newTags = [...selectedTags, newTag];
+                        setSelectedTags(newTags);
+                        field.handleChange(newTags);
+                      }
+                    }}
+                  >
+                    No tags found. Type to create a new one.
+                  </TagsEmpty>
                   <TagsGroup>
                     {tags.map((tag) => (
                       <TagsItem
@@ -334,7 +344,7 @@ export default function AddDataForm({ onSuccess }: AddDataFormProps) {
               </TagsContent>
             </Tags>
             <p className="text-xs text-muted-foreground">
-              Select tags from the list
+              Select from defaults or type to create custom tags
             </p>
           </div>
         )}

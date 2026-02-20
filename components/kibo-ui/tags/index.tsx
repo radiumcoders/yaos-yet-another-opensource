@@ -1,7 +1,7 @@
 "use client";
 
 import { XIcon } from "lucide-react";
-import {
+import React, {
   type ComponentProps,
   createContext,
   type MouseEventHandler,
@@ -35,6 +35,8 @@ type TagsContextType = {
   onOpenChange: (open: boolean) => void;
   width?: number;
   setWidth?: (width: number) => void;
+  searchValue?: string;
+  setSearchValue?: (value: string) => void;
 };
 
 const TagsContext = createContext<TagsContextType>({
@@ -44,6 +46,8 @@ const TagsContext = createContext<TagsContextType>({
   onOpenChange: () => {},
   width: undefined,
   setWidth: undefined,
+  searchValue: undefined,
+  setSearchValue: undefined,
 });
 
 const useTagsContext = () => {
@@ -75,6 +79,7 @@ export const Tags = ({
 }: TagsProps) => {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
   const [width, setWidth] = useState<number>();
+  const [searchValue, setSearchValue] = useState("");
   const ref = useRef<HTMLDivElement>(null);
 
   const open = controlledOpen ?? uncontrolledOpen;
@@ -98,7 +103,7 @@ export const Tags = ({
 
   return (
     <TagsContext.Provider
-      value={{ value, setValue, open, onOpenChange, width, setWidth }}
+      value={{ value, setValue, open, onOpenChange, width, setWidth, searchValue, setSearchValue }}
     >
       <Popover onOpenChange={onOpenChange} open={open}>
         <div className={cn("relative w-full", className)} ref={ref}>
@@ -109,20 +114,48 @@ export const Tags = ({
   );
 };
 
-export type TagsTriggerProps = ComponentProps<typeof Button>;
+export type TagsTriggerProps = ComponentProps<typeof Button> & {
+  maxVisibleTags?: number;
+};
 
 export const TagsTrigger = ({
   className,
   children,
+  maxVisibleTags = 4,
   ...props
-}: TagsTriggerProps) => (
-  <PopoverTrigger render={<Button className={cn("h-auto w-full justify-between p-2", className)} role="combobox" variant="outline" {...props} />}><div className="flex flex-wrap items-center gap-1">
-            {children}
-            <span className="px-2 py-px text-muted-foreground">
-              Select a tag...
-            </span>
-          </div></PopoverTrigger>
-);
+}: TagsTriggerProps) => {
+  // Convert children to array and filter to get only valid React elements
+  const childrenArray = React.Children.toArray(children);
+  const tagValues = childrenArray.filter(
+    (child) => React.isValidElement(child) && child.type === TagsValue
+  );
+  
+  const totalTags = tagValues.length;
+  const hasOverflow = totalTags > maxVisibleTags;
+  const visibleTags = hasOverflow ? tagValues.slice(0, maxVisibleTags) : tagValues;
+  const remainingCount = totalTags - maxVisibleTags;
+
+  return (
+    <PopoverTrigger render={<Button className={cn("h-10 min-h-10 w-full justify-between p-2", className)} role="combobox" variant="outline" {...props} />}>
+      <div className="flex flex-wrap items-center gap-1 h-full overflow-y-auto overflow-x-hidden w-full scrollbar-hide">
+        {totalTags > 0 ? (
+          <>
+            {visibleTags}
+            {hasOverflow && remainingCount > 0 && (
+              <Badge variant="secondary" className="flex items-center gap-1 shrink-0">
+                +{remainingCount} more
+              </Badge>
+            )}
+          </>
+        ) : (
+          <span className="px-2 py-px text-muted-foreground">
+            Select a tag...
+          </span>
+        )}
+      </div>
+    </PopoverTrigger>
+  );
+};
 
 export type TagsValueProps = ComponentProps<typeof Badge>;
 
@@ -177,9 +210,17 @@ export const TagsContent = ({
 
 export type TagsInputProps = ComponentProps<typeof CommandInput>;
 
-export const TagsInput = ({ className, ...props }: TagsInputProps) => (
-  <CommandInput className={cn("h-9", className)} {...props} />
-);
+export const TagsInput = ({ className, ...props }: TagsInputProps) => {
+  const { setSearchValue } = useTagsContext();
+
+  return (
+    <CommandInput
+      className={cn("h-9", className)}
+      onValueChange={(value) => setSearchValue?.(value)}
+      {...props}
+    />
+  );
+};
 
 export type TagsListProps = ComponentProps<typeof CommandList>;
 
@@ -187,15 +228,37 @@ export const TagsList = ({ className, ...props }: TagsListProps) => (
   <CommandList className={cn("max-h-[200px]", className)} {...props} />
 );
 
-export type TagsEmptyProps = ComponentProps<typeof CommandEmpty>;
+export type TagsEmptyProps = ComponentProps<typeof CommandEmpty> & {
+  onCreateTag?: (tag: string) => void;
+};
 
 export const TagsEmpty = ({
   children,
   className,
+  onCreateTag,
   ...props
-}: TagsEmptyProps) => (
-  <CommandEmpty {...props}>{children ?? "No tags found."}</CommandEmpty>
-);
+}: TagsEmptyProps) => {
+  const { searchValue } = useTagsContext();
+
+  if (onCreateTag && searchValue && searchValue.trim()) {
+    return (
+      <CommandEmpty className="py-2 px-2" {...props}>
+        <Button
+          variant="ghost"
+          className="w-full justify-start text-sm"
+          onClick={() => onCreateTag(searchValue.trim())}
+        >
+          <span className="text-muted-foreground">Create tag:</span>
+          <span className="ml-2 font-semibold">{searchValue.trim()}</span>
+        </Button>
+      </CommandEmpty>
+    );
+  }
+
+  return (
+    <CommandEmpty {...props}>{children ?? "No tags found."}</CommandEmpty>
+  );
+};
 
 export type TagsGroupProps = ComponentProps<typeof CommandGroup>;
 

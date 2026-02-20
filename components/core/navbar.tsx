@@ -6,6 +6,7 @@ import {
   SunIcon,
   XIcon,
   XLogoIcon,
+  SparkleIcon,
 } from "@phosphor-icons/react";
 import { AnimatePresence, domAnimation, LazyMotion, m } from "motion/react";
 import { useTheme } from "next-themes";
@@ -13,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
+import { useGradient } from "@/hooks/use-gradient";
 
 enum SocialLinks {
   Github = "https://github.com/radiumcoders/yaos-yet-another-opensource",
@@ -36,6 +38,7 @@ const links = [
 
 function Navbar() {
   const { theme, setTheme } = useTheme();
+  const { gradientEnabled, toggleGradient, mounted: gradientMounted } = useGradient();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -122,6 +125,18 @@ function Navbar() {
                 </Button>
               </Link>
 
+              <Button 
+                size={"icon-lg"} 
+                variant="ghost" 
+                onClick={toggleGradient}
+                title={gradientEnabled ? "Disable gradient" : "Enable gradient"}
+              >
+                <SparkleIcon 
+                  size={32} 
+                  weight={gradientEnabled ? "fill" : "regular"}
+                />
+              </Button>
+
               <Button size={"icon-lg"} variant="ghost" onClick={toggleTheme}>
                 {!mounted ? (
                   <SunIcon />
@@ -197,6 +212,18 @@ function Navbar() {
                     <XLogoIcon size={32} />
                   </Button>
                 </Link>
+
+                <Button
+                  size={"icon-lg"}
+                  variant="ghost"
+                  onClick={toggleGradient}
+                  title={gradientEnabled ? "Disable gradient" : "Enable gradient"}
+                >
+                  <SparkleIcon 
+                    size={32} 
+                    weight={gradientEnabled ? "fill" : "regular"}
+                  />
+                </Button>
 
                 <Button
                   size={"icon-lg"}
