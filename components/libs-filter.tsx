@@ -143,7 +143,7 @@ export default function LibsFilter({ libraries }: LibsFilterProps) {
   const hasActiveFilters = searchQuery.trim() || selectedTags.length > 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-mono">
       {/* Filter Controls - Single Row */}
       <div className="space-y-4">
         {/* Search, Filter, and Sort in One Row */}
@@ -174,7 +174,7 @@ export default function LibsFilter({ libraries }: LibsFilterProps) {
 
           {/* Tag Filter */}
           <div className="w-full lg:w-[300px]">
-            <Tags open={tagPickerOpen} onOpenChange={setTagPickerOpen}>
+            <Tags open={tagPickerOpen} className="ring-[1px] ring-ring/30 rounded-md" onOpenChange={setTagPickerOpen}>
               <TagsTrigger className="h-10 min-h-10 bg-background hover:bg-background w-full">
                 {selectedTags.length > 0 ? (
                   selectedTags.map((tag) => (
