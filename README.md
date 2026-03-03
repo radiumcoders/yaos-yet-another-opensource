@@ -42,7 +42,7 @@ We love contributions! YAOS is a community-driven project, and we welcome:
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=radiumcoders/yaos-yet-another-opensource&type=date&legend=top-left)](https://www.star-history.com/#radiumcoders/yaos-yet-another-opensource&type=date&legend=top-left)
+[![RepoStars](https://repostars.dev/api/embed?repo=radiumcoders%2Fyaos-yet-another-opensource&theme=copper)](https://repostars.dev/?repos=radiumcoders%2Fyaos-yet-another-opensource&theme=copper)
 
 ## Acknowledgments
 
