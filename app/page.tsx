@@ -19,7 +19,7 @@ import { GithubLogoIcon, GlobeIcon } from "@phosphor-icons/react/dist/ssr";
 export const revalidate = 30;
 
 export default async function Page() {
-  const topRatedTools = await getTopRatedTools(6, 1);
+  const topRatedTools = await getTopRatedTools(6, 3);
 
   return (
     <>
