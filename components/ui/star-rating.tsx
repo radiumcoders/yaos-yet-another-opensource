@@ -42,20 +42,18 @@ export default function StarRating({
         type="button"
         className={cn(
           "relative inline-block",
-          interactive && !locked && "cursor-pointer hover:scale-110 transition-transform",
-          locked && "cursor-not-allowed opacity-60"
+          interactive &&
+            !locked &&
+            "cursor-pointer hover:scale-110 transition-transform",
+          locked && "cursor-not-allowed opacity-60",
         )}
         onClick={() => handleStarClick(starValue)}
         disabled={!interactive || locked}
         aria-label={`Rate ${starValue} stars`}
       >
         {/* Background star (empty) */}
-        <Star
-          size={size}
-          className="text-muted-foreground"
-          strokeWidth={1.5}
-        />
-        
+        <Star size={size} className="text-muted-foreground" strokeWidth={1.5} />
+
         {/* Foreground star (filled) */}
         <div
           className="absolute top-0 left-0 overflow-hidden"
@@ -76,7 +74,7 @@ export default function StarRating({
       <div className="flex items-center gap-0.5">
         {Array.from({ length: maxStars }, (_, i) => renderStar(i))}
       </div>
-      
+
       {showCount && (
         <div className="flex items-center gap-1 text-sm text-muted-foreground group-hover/card:text-muted-foreground">
           <span className="font-medium">
@@ -88,12 +86,6 @@ export default function StarRating({
             </span>
           )}
         </div>
-      )}
-      
-      {locked && (
-        <span className="text-xs text-muted-foreground italic">
-          Already rated
-        </span>
       )}
     </div>
   );

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import StarRating from "@/components/ui/star-rating";
 import { submitRating, hasUserRated } from "@/server/ratings";
+import { Button } from "@/components/ui/button";
 
 interface RatingWidgetProps {
   toolId: string;
@@ -20,13 +21,14 @@ export default function RatingWidget({
   showCount = true,
 }: RatingWidgetProps) {
   const [rating, setRating] = useState<number>(
-    initialRating ? parseFloat(initialRating) : 0
+    initialRating ? parseFloat(initialRating) : 0,
   );
   const [totalRatings, setTotalRatings] = useState<number>(
-    initialTotalRatings || 0
+    initialTotalRatings || 0,
   );
   const [hasRated, setHasRated] = useState(false);
   const [userRating, setUserRating] = useState<number | undefined>();
+  const [selectedRating, setSelectedRating] = useState<number | undefined>();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,26 +50,36 @@ export default function RatingWidget({
     checkRating();
   }, [toolId]);
 
-  const handleRate = async (newRating: number) => {
-    if (hasRated || isSubmitting) return;
+  const handleSelectRating = (newRating: number) => {
+    if (!hasRated && !isSubmitting) {
+      setSelectedRating(newRating);
+    }
+  };
+
+  const handleSubmitRating = async () => {
+    // Prevent multiple submissions with multiple checks
+    if (hasRated || isSubmitting || !selectedRating) {
+      return;
+    }
 
     setIsSubmitting(true);
     setError(null);
 
     try {
-      const result = await submitRating(toolId, newRating);
+      const result = await submitRating(toolId, selectedRating);
 
       if (result.success && result.data) {
         setRating(parseFloat(result.data.average_rating));
         setTotalRatings(result.data.total_ratings);
         setHasRated(true);
-        setUserRating(newRating);
+        setUserRating(selectedRating);
+        setSelectedRating(undefined);
       } else {
         setError(result.error || "Failed to submit rating");
+        setIsSubmitting(false);
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -85,9 +97,13 @@ export default function RatingWidget({
           ))}
         </div>
         <div className="flex items-center gap-1">
-          <span className="text-sm font-medium text-muted-foreground/60 animate-pulse">0.0</span>
+          <span className="text-sm font-medium text-muted-foreground/60 animate-pulse">
+            0.0
+          </span>
           {showCount && (
-            <span className="text-xs text-muted-foreground/60 animate-pulse">(0 ratings)</span>
+            <span className="text-xs text-muted-foreground/60 animate-pulse">
+              (0 ratings)
+            </span>
           )}
         </div>
       </div>
@@ -95,30 +111,55 @@ export default function RatingWidget({
   }
 
   return (
-    <div className="space-y-2">
-      <StarRating
-        rating={rating}
-        totalRatings={totalRatings}
-        size={size}
-        interactive={!hasRated}
-        onRate={handleRate}
-        locked={hasRated}
-        showCount={showCount}
-      />
-
-      {error && (
-        <p className="text-xs text-red-500">{error}</p>
-      )}
-
-      {!hasRated && !isSubmitting && totalRatings === 0 && (
-        <p className="text-xs text-muted-foreground">
-          Be the first to rate this tool!
+    <div className="space-y-4">
+      {/* Display Current Rating */}
+      <div>
+        <p className="text-xs text-muted-foreground mb-2 font-medium">
+          Current Rating
         </p>
+        <StarRating
+          rating={rating}
+          totalRatings={totalRatings}
+          size={size}
+          interactive={false}
+          locked={true}
+          showCount={showCount}
+        />
+      </div>
+
+      {/* Submit Review Section */}
+      {!hasRated && (
+        <div>
+          <p className="text-xs text-muted-foreground mb-2 font-medium">
+            Your Rating
+          </p>
+          <div className="space-y-2">
+            <StarRating
+              rating={selectedRating || 0}
+              totalRatings={0}
+              size={size}
+              interactive={true}
+              onRate={handleSelectRating}
+              locked={false}
+              showCount={false}
+            />
+            <Button
+              onClick={handleSubmitRating}
+              disabled={!selectedRating || isSubmitting}
+              size="sm"
+              className="w-full"
+            >
+              {isSubmitting ? "Submitting..." : "Submit Review"}
+            </Button>
+          </div>
+        </div>
       )}
 
-      {isSubmitting && (
-        <p className="text-xs text-muted-foreground">
-          Submitting your rating...
+      {error && <p className="text-xs text-red-500">{error}</p>}
+
+      {totalRatings === 0 && (
+        <p className="text-xs text-muted-foreground italic">
+          Be the first to rate this tool!
         </p>
       )}
     </div>
